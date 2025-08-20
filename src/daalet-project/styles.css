@@ -1,0 +1,1046 @@
+
+body {
+    transition:500ms; 
+   position: relative;
+    margin : 0px;
+    font-family: 'Fresca'; 
+font-style: normal;
+font-weight: 400;
+font-size: 20px;
+line-height: 24px;
+
+
+
+
+}
+/** navbar styling */
+.menuIcon{
+    transition:500ms; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 18px;
+    height: 18px;
+    border-radius: 4px;
+    background-color: rgba(245, 245, 220, 0);
+    padding: 5px;
+    border: 1.5px solid rgba(0,108,133,1) ;
+    margin-left: 30px;
+    margin-right: 30px
+
+}
+ .menuIcon > div {
+    
+    transition:600ms;  
+    border-radius: 4px;
+    border: 1.5px solid rgba(0,108,133,1);
+    width : 20px;
+   
+
+}
+.navbar {
+    
+    transition:500ms;  
+    color : rgba(0,108,133,1);
+    background: rgb(233, 245, 248);
+    background: linear-gradient(90deg,
+        rgb(207, 227, 232)6%,
+        rgb(223, 235, 236) 48%,
+        rgb(238, 248, 250)91%);
+    width: 100%;
+    height: 60px;
+    box-shadow: 3px 6px 6px rgba(11, 11, 11, 0.264);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    
+}
+.navbar > h1 , .daaletLink{
+    margin-left : 20px;
+    text-shadow:  3px 8px 10px rgba(11, 11, 11, 0.535)
+}
+.daaletLink{
+    margin-right: 20px;
+    text-decoration: none !important;
+    color: rgb(18, 172, 207);
+
+}
+
+
+/** flip  icon for dark Mode*/
+.DarkModefliperCon{
+    display: flex;
+    justify-content: space-between;
+    margin: 30px;
+}
+
+
+
+
+.dark-mode-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+
+}
+.icon-div:hover{
+    cursor: pointer;
+
+}
+.icon-div{
+    display: flex;
+    
+    position: relative;
+    align-items: center;
+    justify-content: end;
+    min-width: 42px;
+    height: 15px;
+    background-color: #ffffff;
+    border-radius: 9px;
+    border-style: solid;
+    border-width: 1.5px;
+    border-color:rgb(0,108,133);
+    margin: 20px;
+    
+}
+.icon-div > P {
+    padding: 0px;
+    margin: 3px;
+}
+.fliper-div{
+    transition:500ms; 
+    border-style: solid;
+    border-width: 2px;
+    border-color:rgb(0,108,133);
+    position : absolute;
+    background-color: rgb(73, 72, 72);
+    border-radius: 100%;
+    width: 11px;
+    height: 10px;
+    margin: 1.5px;
+}
+
+.soundFliper{
+    transition:500ms; 
+    display: flex;
+    justify-content: space-between;
+    margin: 10px;
+}
+.soundFlipperContainer{
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
+}
+/* main content style including side bar and game table and player table*/
+main {
+    transition:500ms; 
+    display: flex;
+    justify-content:end;
+    height: 535px;
+    
+
+}
+
+/* sid bar style*/
+
+.sid-bar {
+    background-color: rgb(0,108,133);
+    /* background: linear-gradient(90deg,
+     rgba(0,108,133) 50%,
+     rgba(0,108,133,1)100%); */
+    width: 160px;
+    height:100%;
+    min-height: 518px;
+    min-width: 130px;
+    font-size: small;
+}
+
+.themesArrow{
+    width: 8px;
+    height: 8px;
+    border-color: #bdeef4;
+    border-bottom: 0px;
+    border-left: 0px;
+    border-right:2px;
+    border-top: 2px;
+    border-style: solid;
+    rotate: 135deg;
+    margin : 20px;
+
+
+}
+
+.popUp{
+    
+    width: 200px;
+    height: 250px;
+    background-color: rgb(0,108,133);
+    color: rgb(207, 227, 232);
+    border-radius: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 16px;
+   
+    box-shadow: 1px 3px 10px rgba(0, 0, 0, 0.451);
+    
+
+}
+.colorsDiv ,.bordStyleDiv {
+    display: flex;
+    justify-content: space-between;
+    margin:10px 10px 30px 10px;
+    
+}
+.colorsDiv > div {
+    width:  30px;
+    height: 30px;
+    border-radius: 20px;
+    border-color: #e6fbff;
+    border-width: 2px;
+    border-style:dotted;
+}
+.bordStyleDiv > div {
+    width:  35px;
+    height: 35px;
+    background-color: #e6fbff;
+    border-color: #e6fbff;
+}
+
+.cerDiv{
+    border-radius: 80px ;
+  
+    border-width: 1px;
+    border-style:solid;
+    border-color: #083942;
+}
+.cerDiv:hover , .triDiv:hover , .borderDiv:hover ,.normDiv:hover {
+    cursor: pointer;
+}
+.triDiv{
+    border-radius: 15px;
+    border-width: 1px;
+    border-style:solid;
+    border-color: #083942;
+}
+.borderDiv{
+    border-radius: 10px ;
+
+    border-width: 1px;
+    border-style:solid;
+    border-color: #083942;
+}
+.normDiv{
+    border-radius: 1px ;
+   
+    border-width: 1px;
+    border-style:solid;
+    border-color: #083942;
+}
+.lightColor{
+    background-color:rgb(88, 58, 72);
+}
+.blueColor{
+    background-color: rgb(140, 134, 177);
+}
+.readColor{
+    background-color:rgb(180, 166, 131)
+}
+.yallowColor{
+    background-color:rgb(68, 113, 68)
+
+}
+.lightColor:hover , .blueColor:hover, .readColor:hover , .yallowColor:hover{
+    cursor: pointer ;
+}
+
+.colorBStyle{
+    margin:0px 10px ;
+    font-size: 14px;
+    width: fit-content;
+    height: fit-content;
+    border-radius: 10px;
+    border-width: 0px;
+    display: inline-block;
+    background-color: #023a3d;
+    padding: 5px 4px;
+    box-shadow: 1px 8px 6px rgba(6, 6, 6, 0.368);
+    
+
+    
+}
+.colorBStyle:hover{
+    cursor: pointer;
+    box-shadow: 1px 6px 8px rgba(6, 6, 6, 0.687);
+
+}
+
+ul {
+
+    margin-top: 0px;
+    padding-top:30px;
+    color: rgb(207, 227, 232);
+    margin-left: -35px;
+}
+.homeLink{
+    display: flex;
+    text-decoration: none;
+    color: rgb(207, 227, 232);
+    align-items: center;
+
+}
+
+li{
+    font-size: 13px;
+    font-family: 'Fresca';
+    font-style: normal;
+    font-weight: 400;
+    
+    line-height: 23px;
+    display: flex;
+    align-items: center;
+    list-style: none;
+    height: 60px;
+    
+}
+
+
+
+li:hover ,.homeLink:hover{
+    color:#e6fbff;
+    cursor: pointer;
+    text-shadow:3px 8px 10px rgba(11, 11, 11, 0.264) ;
+}
+.sid-bar >ul > li > img , .homeLink > img{
+
+    width: 25px;
+    height:25px;
+    margin-right: 10px;
+
+}
+
+/**game table style*/
+table {
+
+    transition:500ms; 
+    height: 470px;
+    background-color:rgba(255, 255, 255, 0); 
+    border-radius: 5px;
+    width: 600px;
+    min-width: 420px;
+    
+    box-shadow: 1px 2px 8px 4px rgba(0, 0, 0, 0.255);
+    border-spacing:0px;
+    border-radius:5px;
+    border-left: 0px;
+    border-right: 0px;
+    border-top:7px;
+    border-bottom:7px;
+    border-style:solid ;
+    border-top-color:#a67677;
+    border-bottom-color:#dbbbbb;
+    margin-top: 30px;
+    margin-left: 70px;
+    margin-right: 70px;
+   
+    /* background: linear-gradient(180deg, #a47825 50%, rgb(219 187 187) 50%) */
+}
+
+td{
+    transition:100ms; 
+   
+    height: 50px;
+    width: 50px;
+    max-width: 100px;
+    max-height: 100px;
+    
+    border-radius: 2px;
+    text-align: center;
+    padding:0px;
+   
+}
+ .evenTable{
+    border-width: 1px;
+    border-style:solid;
+    background-color: rgb(233, 245, 248);
+   
+    
+}
+
+.oddTable{
+    border-width: 1px;
+    border-style:solid;
+    background-color: rgb(0,108,133);
+   
+   
+   
+}
+
+
+/**players table style*/
+.playerStatus{
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: rgb(0,108,133);
+   
+     
+        margin-top: 30px;
+        margin-left: auto;
+        border-top-left-radius: 5px;
+        width: 300px;
+        height: 94.4%;
+}
+.statusDiv{
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    color: rgb(233, 245, 248);
+    background-color: rgb(0,108,133);
+   
+
+}
+
+.player{
+    transition:500ms; 
+    display: flex;
+    justify-content: center;
+    align-items:center;
+
+    color: rgb(233, 245, 248);
+}
+
+
+.imgDiv ,.wonTable > h4 > img {
+    background-color: rgba(161, 164, 165, 0.427);
+    color: rgba(161, 164, 165, 0.429);
+    border-radius:3px;
+    border-left: 0px;
+    border-right: 0px;
+    border-top:3px;
+    border-bottom:3px;
+    border-style:solid ;
+    margin: 0px 5px;
+    width: 35px;
+    height: 35px;
+    border-color: #a67677;
+    
+    padding:2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.imgDiv >img{
+    width: 30px;
+    height: 30px;
+    
+}
+
+.scoreContainer{
+    display: flex;
+    flex-direction: column;
+    margin: 15px 10px;
+    
+    
+    
+}
+.scoreContainer > h5{
+    transition:500ms; 
+    margin: 0px;
+    color: rgb(233, 245, 248);
+}
+
+.scoreDiv {
+    transition:500ms; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
+    width: 35px;
+    height: 25px;
+    border-radius: 3px;
+    margin: 0%;
+    
+    border-left: 0px;
+    border-right: 0px;
+    border-top:3px;
+    border-bottom:3px;
+    border-style:solid ;
+    border-color:#a67677;
+   
+}
+.scoreDiv > h3{
+    color:#e6fbff;
+   
+} 
+
+.sahanIcon{ 
+    transition:500ms; 
+    border-radius: 5px;
+    border-left: 0px;
+    border-right: 0px;
+    border-top:4px;
+    border-bottom:4px;
+    border-style:solid ;  
+    border-color: #a67677;  
+    position: relative;
+    width:110px;
+    height:60px;
+   
+}
+.sahanDiv{
+    transition:500ms; 
+    display : flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 15px;
+    margin-left:10px;
+    margin-right: 10px;
+    margin-bottom:10px
+}
+.rezain-botton{
+    transition:500ms; 
+    color:#e6fbff;
+   
+    cursor:pointer;
+    border-radius:3px;
+    border-left: 0px;
+    border-right: 0px;
+    border-top:3px;
+    border-bottom:3px;
+    border-style:solid ; 
+    width: 57px ;
+    height: 35px;
+    border-color: #a67677;
+    font-weight: 900;
+
+}
+
+.rizAndArrowCon{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 62px;
+    padding: 5px;
+}
+/** back and forward style*/
+.arrowsContainer{
+    display: flex;
+    width: 55px ;
+    justify-content:space-between;
+}
+/*forward arrow style */
+.forwardArrow{
+    position:relative;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    width: 25px ;
+    height: 18px;
+    background-color: inherit;
+
+}
+.forwardArrow:hover{
+    color: rgba(38, 183, 212, 0.412);
+    background: rgba(158, 231, 255, 0.274);
+  
+        border-radius: 3px; 
+        cursor:pointer;
+        border-left: 0px;
+        border-right: 0px;
+        border-top:2px;
+        border-bottom:2px;
+        border-style:solid ; 
+        border-color: #a67677; 
+        
+    
+}
+.forwardArrow> p{
+    
+    font-size: small;
+    font-weight:1000;
+    position:absolute;
+      bottom:1px;
+      color: rgb(233, 245, 248);
+    
+
+}
+.arowHead{
+ position:absolute;
+
+ right: 3px;
+ width: 8px;
+ height:8px;
+ border-top: 3px ;
+ border-right:3px ;
+ border-left: 0px ;
+ border-bottom: 0px ;
+ 
+ border-color: #a67677;
+ border-style: solid;
+ rotate: 45deg;
+ 
+
+}
+.arowTell{
+
+    position:absolute;
+    left:3px;
+    width: 13px;
+    height: 0px;
+    border-top: 1.5px;
+    border-bottom:  1.5px;
+    border-color: #a67677;
+    border-style:solid;
+
+}
+
+/** backward arrow style*/
+
+.backwardArrow{
+    position:relative;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    width: 25px ;
+    height: 18px;
+    background-color:inherit;
+    
+    
+
+}
+
+.backwardArrow > p{
+
+    font-weight:1000;
+    font-size: small;
+    position:absolute;
+      bottom:1px;
+      color: rgb(233, 245, 248);
+
+}
+.backwardArrow:hover{
+    
+    background: rgba(158, 231, 255, 0.274);
+        border-radius: 3px; 
+        cursor:pointer;
+        border-left: 0px;
+        border-right: 0px;
+        border-top:2px;
+        border-bottom:2px;
+        border-style:solid ; 
+        border-color: #a67677;
+    
+}
+.BArrowHead{
+ position:absolute;
+
+ left: 3px;
+ width: 8px;
+ height:8px;
+ border-top: 0px ;
+ border-right:0px ;
+ border-left: 3px ;
+ border-bottom: 3px ;
+ border-color:#a67677;
+ border-style: solid;
+ rotate: 40deg;
+ 
+
+}
+.BArrowTell{
+
+    position:absolute;
+    right:3px;
+    width: 13px;
+    height: 0px;
+    border-top: 1.5px;
+    border-bottom:  1.5px;
+    border-color: #a67677;
+    border-style:solid;
+
+}
+
+
+
+.elem{
+
+    position:absolute;
+    top :3px;
+    left: 10%;
+    height: 85%;
+    cursor: pointer;
+    margin: 0px;
+}
+.elemCounter{
+   position:absolute;
+   right : 10%;
+   bottom:25%;
+   border-radius:5px;
+    border-left: 0px;
+    border-right: 0px;
+    border-top:2px;
+    border-bottom:2px;
+    border-style:solid ;
+   height:30px;
+   border-color: #a67677;
+   color:#e6fbff;
+   font-weight: 1000;
+   background-color:inherit;
+   justify-content: center;
+    
+}
+
+/** footer style*/
+footer {
+    transition:500ms;
+    background: rgb(233, 245, 248);
+    background: linear-gradient(90deg,
+        rgb(207, 227, 232)6%,
+        rgb(223, 235, 236) 48%,
+        rgb(238, 248, 250)91%);
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: rgba(0,108,133,1);
+}
+footer > p {
+    margin: 10px 0px 10px 0px;
+}
+footer > div > a > img{
+    width: 25px;
+    height: 25px;
+}
+footer > div > a > img:hover{
+    border-radius: 10% 100% 10% 10%;
+    transition: 0.5s;
+   
+    
+}
+
+.socialIcon {
+    
+    display: flex;
+    justify-content: space-between;
+    width: 200px;
+    margin-bottom: 20px;
+}
+
+.wonTable{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgb(0,108,133);
+    background: linear-gradient(90deg,
+    rgba(0,108,133,1)3%,
+    rgba(0,108,133,1)100%);
+     width: 400px;
+     height: 400px;
+     margin: 30px 80px;
+     border-radius: 14px;
+     margin-left: 150px;
+     box-shadow: 3px 8px 10px rgba(11, 11, 11, 0.264); 
+     font-weight: 900;
+     text-shadow: 3px 4px 10px rgba(11, 11, 11, 0.264);
+
+}
+
+.wonTable > h4 > img{
+    width: 50px ;
+    height: 50px;
+}
+
+.wonTable > button{
+
+    background-color:#99eeff3d;
+    color:#083942;
+    font-weight: 900;
+    border-radius:3px;
+    border-left: 0px;
+    border-right: 0px;
+    border-top:2px;
+    border-bottom:2px;
+    border-style:solid ;
+    box-shadow: 0px 4px 9px 5px rgba(11, 11, 11, 0.437); 
+    font-size: 13px;
+    text-shadow: 3px 8px 10px rgba(11, 11, 11, 0.484) ;
+    width: fit-content;
+    height: 33px;
+    
+
+
+}
+
+.wonTable > button:hover{
+    
+    margin-bottom: 5px;
+    box-shadow: 4px 9px 9px rgba(0, 0, 0, 0.351);
+}
+
+
+/** the following class is to change the parent style for balha or hajar when it clicked */
+
+.change-border-color {
+    border: rgb(239, 71, 37) ;
+    border-style: dashed;
+    border-width: .6px;
+}
+
+/** change the parent bg color for the moved item */
+.moved-item {
+    background-color: rgb(193, 255, 243);
+    transition: .2s;
+}
+
+/** bg color for the sconce */
+.sconce{
+    background-color:  rgb(101, 205, 129);
+    border-radius: 0%;
+    transition:1s;
+
+}
+
+/** bg color for the wrong move */ 
+.wrongMove{
+    background-color:rgb(255, 0, 0);
+    transition:.7s;
+}
+
+
+.BBorderColor{
+
+    border-radius:5px;
+    border-left: 0px;
+    border-right: 0px;
+    border-top:2px;
+    border-bottom:2px;
+    border-style:solid ;  
+    border-color: #a67677;
+}
+
+.HBorderColor{
+    border-radius:5px;
+    border-left: 0px;
+    border-right: 0px;
+    border-top:2px;
+    border-bottom:2px;
+    border-style:solid ;  
+    border-color:#dbbbbb;
+
+}
+
+.formContainer{
+    width: 100%;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+   
+}
+
+.singUpForm{
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+/** home page styling*/
+ 
+.homePage{
+    margin: 0px 250px 5px;
+    height: 550px;
+    background-color:rgb(223, 235, 236);
+    border-radius:10px;
+    box-shadow: 1px 2px 8px 4px rgba(0, 0, 0, 0.158);
+}
+ .aboutDiv{
+   height:350px;
+   background-color: rgb(0,108,133);
+   border: #083942 1px solid;
+   border-radius: 10px 10px 0px 0px;
+   margin-top: 5px;
+
+
+ }
+.optionContainer{
+    padding: 10px;
+    display:flex;
+    justify-content: space-around; 
+    color:rgb(49, 177, 206); 
+    font-weight: 500;
+    font-size: medium;
+    margin-top: 20px;
+}
+.gotoGameLink {
+    text-decoration: none;
+    color: rgb(0,108,133) ;
+
+}
+.optionContainer > div ,.gotoGameLink {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 60px;
+    
+}
+.optionContainer > div > img ,.gotoGameLink > img {
+    height: 70%;
+    margin: 5px;
+}
+
+
+.optionContainer > div:hover ,.gotoGameLink:hover{
+     cursor: pointer !important;
+    text-shadow: 2px 4px 10px  rgba(0, 0, 0, 0.351)
+    
+}
+.PlayerNamesForm{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.PlayerNamesForm > label{
+    color: rgb(0,108,133);
+}
+.PlayerNamesForm > label > input ,.PlayerNamesForm > button{
+    border:  rgb(0,108,133) solid 2px !important;
+    border-radius: 5px;
+    height: 25px;
+    margin:10px;
+    font-weight: 600;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+
+}
+.FormGameLink{
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 4px;
+    color: #8db9c1;
+    margin: 10px;
+  background-color:rgb(0,108,133);
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+}
+.FormGameLink:hover{
+    box-shadow: 1px 5px 10px rgba(0, 109, 133, 0.461);
+}
+form{
+    position: relative;
+}
+.backArrowCon {
+    position:absolute;
+    left: -20px;
+    top:-10px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    width: 25px ;
+    height: 18px;
+    background-color:inherit;
+
+}
+.backArrowCon:hover{
+    border: 2px solid rgba(0, 109, 133, 0.461);
+    border-radius: 10px;
+    
+}
+/* setting style section */
+
+.languageOption{ 
+  
+    background-color: #d5f5fa;
+    border-radius: 3px;
+    border: none;
+    height: 20px;
+}
+ option{
+    border-radius: 5px;
+}
+
+/** language toggle icon styles */
+
+.langaugeDiv{
+    margin-top: 25px;
+    margin-right: 20px;
+    
+    position: relative;
+    width: 30px;
+    height: 30px;
+}
+.langaugeDiv:hover{
+    cursor: pointer;
+
+}
+.arabicDiv { 
+    position: absolute;
+    top: -11px;
+    left: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1px;
+    border-radius: 5px 2px 5px 2px ;
+    
+    background-color: rgb(0,108,133);
+    width: 18px;
+    height: 18px;
+    color: aliceblue;
+    font-size: 14px;
+}
+.englishDiv{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1px;
+    border-radius: 6px 1px 6px 1px;
+    background-color: rgb(146, 169, 175);
+    width: 15px;
+    height: 15px;
+    color: rgb(202, 206, 207);
+    font-size: 12px;
+}
+
+.arrowDiv1{
+   
+    transition: 1s ;
+    transform: rotateX('180deg');
+   
+    position: absolute;
+    top: -10px;
+    left: -4px;
+   
+     width: 10px;
+    height: 10px;
+    border-width: 1.5px;
+    border-color: rgb(0,108,133);
+    border-style: solid;
+    border-right: 0px;
+    border-bottom:0px;
+    
+}
+.arrowDiv2{
+    transition: 1s;
+    position: absolute;
+    top: 6px;
+    left: 22px;
+    
+     width: 10px;
+    height: 10px;
+    border-width: 1.5px;
+    border-color: rgb(0,108,133);
+    border-style: solid;
+    border-top: 0px;
+    border-left:0px;
+
+}

@@ -1,0 +1,131 @@
+** daalet project *
+daalet is a traditional game , it is require tow player to play each on has a 12 play element, the game bord is divided to 36 equal size square , 
+the game starts by putting the play element in the bord each player allowed to put just one element at the time then the turn move to another player 
+each player try to make sconce of 3 element or try to put his element in a way that allow him to make the sconce in the future .
+if the player has a vartical or horizontal sconce , he can remove one element of the another player ,
+the game ended play remove all the another player element or by the rezaining  of one player
+
+
+
+** the main problem that faced the development  *
+
+1- how can the game know if there is a sconce in the gamebord V sconce or H sconce ?
+i I tryed to loop over the all td in the game bord and check 
+
+
+** how to solve the problem of remove the element of other player when the player get sconce of 3 element in on line  **
+ when the element move check the other element of the same line 
+ if it create a sconce of 3  from the same element push it on the array 
+ check the array if it has element allow the player to remove the element
+ if the player kill the element remove all the data in the array
+       ** how the problem actelly solved  *
+       I create a function that checks the play elements siblings of the same line Horizontal or vertical 
+       ** the function is runs everyTime that play elements moves, it  has a parameters that contains  the   
+
+** other requirement 
+1- if element count or hajar count != 0 the players should never make a sconce of 3 element from the same type **checked*
+2- player can resign when he want and by that the other player win the game. **checked*
+3- make a special celebration for the winner  using react 'Confetti' lip. **checked*
+4- make the game design responsive to the size of the window,/*checked*/
+5- create a home page that contains :
+   1- a pref description to the game and the roll
+   2- players can assign there names in from  /*checked*/
+   3- flip coin to desied who will play first 
+6- add a change themes futures 
+7- add a game sitting futures :/*checked*/
+   a. change the language/*checked*/
+   b.change the sounds /*checked*/
+8- resign buttons should not work unless the player add the element to the game table 
+9- adding a style to back and forward arrow to  if the back and forward arrays length = 0
+10- add language changer to the navigation bar /*checked*/ 
+11- make the form change from field to field by clicking the enter button;
+ 
+/*** about the game ***/
+ضالت . احدي الالعاب الشعبية السودانية المهددة بالنسيان . بالاخص من الاجيال المعاصرة ، 
+ تعتبر ضالت من اهم الالعاب الشعبية زات الطابع التنافسي واكثرها تعقيدا , تنتشر بكثافة في 
+  ,الاسواق الشعبية القديمة حيث يجتمع العمال واصحاب الاعمال الحرة حولها يقضون اوقات فراقهم في التنافس  ضد بعضهم البعض حول من يعطي خصمه هذيم ساحق حيث 
+  ان تلك الهذيمه تتحقق عندما لا يستطيع خصمك اخد اي قطعة من قطعك وتسمي هذه الهذية
+   "صايمة" 
+
+#######################################################################
+
+/*** daalet AI requirements ***/
+
+1. state that determines wether the 'engine' bot mode on or off 
+    the state changed to true when the player clicking the play 
+    with computer icon in the home page . 
+2. the player name form show one faild the player can assign his
+   name in .
+3. for now the player will starts the game not the bot .
+4. the bot take the place of player1 .
+5. 
+
+// ai functions ****
+
+move function : ai should pick a best move available from "available_moves array" , the choosing of the move depend on the score of available_move , 
+. and the score of the possible  moves  generated from this move .
+        move function return the id of current element's position and the id of td that element should move to it ...
+        how to pick the best move:
+                 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+** the next code allow 'drag and drop' the elements**
+
+     element.onmousedown = function(event) { make the element moveable on the game table
+         element.style.position = 'absolute';
+         element.style.zIndex = 1000;
+
+         document.body.append(element);
+
+
+         function moveAt(pageX, pageY) {
+             element.style.left = pageX - element.offsetWidth  2 + 'px';
+             element.style.top = pageY - element.offsetHeight  2 + 'px';
+           }
+         moveAt(event.pageX, event.pageY);
+
+         function onMouseMove(event) {
+             moveAt(event.pageX, event.pageY);
+           }
+
+         document.addEventListener('mousemove', onMouseMove);
+
+         element.onmouseup = function(eتت) {
+             document.removeEventListener('mousemove', onMouseMove);
+             console.log(e.target.parentElement)
+             element.onmouseup = null;
+           };
+        
+         };
+   element.ondragleave = function(){
+     console.log('dragover');
+   }
+   element.ondragstart = function() {
+     console.log('dragstart');
+     return false;
+   };
