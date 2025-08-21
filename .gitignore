@@ -1,3 +1,5 @@
 node_modules/
 # ignore build file 
 build/
+src/**/notes.txt
+
