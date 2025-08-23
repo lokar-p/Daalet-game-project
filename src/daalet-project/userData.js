@@ -1,6 +1,6 @@
-import React from "react"
+
 import { nanoid } from "nanoid"
-export default [
+ const data = [
     
     {
         id :nanoid(),
@@ -26,3 +26,4 @@ export default [
 
 ]
  
+export default data;

@@ -9,11 +9,11 @@ export default function PlayerTable(props){
      
   }
  
-const buttonStyle ={
-    borderColor: '#dbbbbb',
-  color: 'rgb(233, 245, 248)',
+// const buttonStyle ={
+//     borderColor: '#dbbbbb',
+//   color: 'rgb(233, 245, 248)',
   
-}
+// }
 
 const arrowBorderStyle = {
     borderColor: '#dbbbbb',
@@ -96,7 +96,7 @@ let DarkModeTextColor = {
                     <div className="sahanIcon"   style={darkModStyle}>
                     <button className="elemCounter" >{props.player1_count}</button>
                    
-                    <img src='icon/balha.svg'
+                    <img alt="" src='icon/balha.svg'
                           className="elem" 
                           id = "balahaId"
                           onClick={props.player1Turn}
@@ -138,7 +138,7 @@ let DarkModeTextColor = {
                       <div className="sahanIcon"  style={borderStyle}>
                         
                         <button className="elemCounter"  style= {{borderColor: !props.player2 && '#dbbbbb'}}>{props.player2_count}</button>
-                        <img src='icon/hajar.svg'
+                        <img alt="" src='icon/hajar.svg'
                             className="elem" 
                             id ='hajar' 
                             onClick={props.player2Turn}

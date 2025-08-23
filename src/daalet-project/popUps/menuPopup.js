@@ -1,5 +1,5 @@
 import React from "react";
-import Popup from "reactjs-popup";
+//import Popup from "reactjs-popup";
 import SettingsPopup from "./settingsPopup";
 import THemesPopUp from "./THemesPopUp";
 import { Link } from "react-router-dom";
@@ -59,9 +59,9 @@ let activeArrowStyle = {
                     <Link to ='/' className='homeLink'   >
                         {props.isArabic && <>
                         <h4>{props.isArabic ? 'الصفحة الرئسية' : ' Home'}</h4>
-                        <img src="icon/home.svg" style = {props.isArabic? imgArabicStyle : null}/>
+                        <img alt="" src="icon/home.svg" style = {props.isArabic? imgArabicStyle : null}/>
                         </>}
-                        {!props.isArabic && <><img src="icon/home.svg"/>
+                        {!props.isArabic && <><img alt="" src="icon/home.svg"/>
                         <h4>{props.isArabic ? 'الصفحة الرئسية' : ' Home'}</h4>
                         </>}
                    </Link>
@@ -70,7 +70,7 @@ let activeArrowStyle = {
                         <li id ='theme' onMouseEnter={()=>setThemesPopup(true)} onMouseLeave={()=>setThemesPopup(false)}  >
                                 
                                 {!props.isArabic && <>
-                        <img src="icon/themes.svg"  style = { imgArabicStyle }/>
+                        <img alt="" src="icon/themes.svg"  style = { imgArabicStyle }/>
                         <h4>{props.isArabic ? 'التصامبم' : 'Themes'}</h4>
                         <div className='themesArrow'  style = {ThemesPopup? activeArrowStyle : null}></div>
                         </>}
@@ -79,7 +79,7 @@ let activeArrowStyle = {
                         <div className='themesArrow' style = {ThemesPopup? activeArrowStyle : null}></div>
                         <h4>{props.isArabic ? 'التصامبم' : 'Themes'}</h4>
                        
-                         <img src="icon/themes.svg"  style = { imgArabicStyle }/>
+                         <img alt="" src="icon/themes.svg"  style = { imgArabicStyle }/>
                         </>}
                              <THemesPopUp 
                              positionLeft = '140px' 
@@ -95,7 +95,7 @@ let activeArrowStyle = {
                      <li id = 'settings' onMouseEnter={()=>setSettingPopup(true)} onMouseLeave={()=>{setSettingPopup(false)} }>
                         
                        {!props.isArabic && <>
-                        <img src="icon/settings.svg"  style = {imgArabicStyle}/>
+                        <img alt="" src="icon/settings.svg"  style = {imgArabicStyle}/>
                         <h4>{props.isArabic ? 'الإعدادات' : 'Settings'}</h4>
                         <div className='themesArrow '  style = {SettingPopup? activeArrowStyle : null}></div>
                         </>}
@@ -104,7 +104,7 @@ let activeArrowStyle = {
                         <div className='themesArrow ' style = {SettingPopup? activeArrowStyle : null}></div>
                         <h4>{props.isArabic ? 'الإعدادات' : 'Settings'}</h4>
                        
-                         <img src="icon/settings.svg"  style = {imgArabicStyle }/>
+                         <img alt="" src="icon/settings.svg"  style = {imgArabicStyle }/>
                         </>}
                        <SettingsPopup
                         positionLeft = '140px' 

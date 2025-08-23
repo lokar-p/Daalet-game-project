@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Popup from "reactjs-popup";
+//import Popup from "reactjs-popup";
 import Menu from "../popUps/menuPopup";
 import {DarkTheme} from '../app'
 
@@ -39,9 +39,10 @@ export default function NavBar(props){
    fontWeight: 'bold',
   }
  
-  const navDarkStyle = {// this changes the background color of the navigation bar
- backgroundColor:DarkMode? 'inherit' : 'white'
-  }
+//   const navDarkStyle = {// this changes the background color of the navigation bar
+//  backgroundColor:DarkMode? 'inherit' : 'white'
+//   }
+
   const darkCon = {
     padding: '2px',
     width: '42px ',
@@ -53,18 +54,12 @@ export default function NavBar(props){
   const darkModStyle ={
     
         color :DarkMode? ' rgb(52, 181, 210)' :'rgb(233, 245, 248)' ,
-        background:DarkMode? ' rgb(63, 63, 63)': 'rgb(233, 245, 248)',
         background:DarkMode? 'linear-gradient(90deg, rgb(92, 96, 97)6%, rgb(136, 139, 139) 48%, rgb(161, 164, 165)91%)':
                                      'linear-gradient(90deg, rgb(207, 227, 232)6%,rgb(223, 235, 236) 48%, rgb(238, 248, 250)91%)',
 
      
   }
 
-  let arbicStyle = {
-    marginRight : 'auto',
-    marginLeft : '0px',
-  
-  }
 
 
 
@@ -104,22 +99,20 @@ export default function NavBar(props){
   let gameName =   <h1 ><Link to ='/' className="daaletLink" >{props.isArabic ? 'ضالت' : 'Daalet'}</Link> </h1>
 /** menu icon section  */
 
-const  menuFlipper = (e)=>{
-  let menu = document.getElementsByClassName('menuIcon')[0];
+// const  menuFlipper = (e)=>{
+//   let menu = document.getElementsByClassName('menuIcon')[0];
 
-  menu.style.flexDirection = 'row';
-  let divs = menu.children
-  let divsArray = Object.values(divs)
-  divsArray.map(ele => {
-    console.log(ele)
-    ele.style.display = 'inline-block'
-    ele.style.rotate = '90deg';
-    ele.style.width = '26px'
-    ele.style.height = '0px'
-
-
-  })
-}
+//   menu.style.flexDirection = 'row';
+//   let divs = menu.children
+//   let divsArray = Object.values(divs)
+//   divsArray.map(ele => {
+//     console.log(ele)
+//     ele.style.display = 'inline-block'
+//     ele.style.rotate = '90deg';
+//     ele.style.width = '26px'
+//     ele.style.height = '0px'
+//   })
+// }
 
 let menuIconDarkMode = {
   borderColor: 'rgb(49, 217, 255)'

@@ -1,11 +1,10 @@
-import React, { useEffect, useTransition } from "react";
+import React from "react";
 import SidBar from "./GameSectionComponent/sidbar";
 import GameTable from "./GameSectionComponent/game_table";
 import PlayerTable from "./GameSectionComponent/player_table";
 import WonTable from "./wonTable";
 import {nanoid} from 'nanoid';
 import PlayerStatus from "./GameSectionComponent/player_status";
-
 
 export default function Main(props){
     const [addLog , setAddLog] = React.useState([])
@@ -118,7 +117,7 @@ let reLive = new Audio('./audio/reLive.mp3')
                 target.parentElement.classList.remove('HBorderColor')
              }
            
-           { props.soundON && killAudio.play(); }
+            props.soundON && killAudio.play(); 
             let id = target.id  
             let parent = target.parentElement.id
             setMoveLog(old =>{
@@ -150,7 +149,7 @@ let reLive = new Audio('./audio/reLive.mp3')
                 target.parentElement.classList.remove('BBorderColor')
              }
 
-             { props.soundON && killAudio.play(); }
+              props.soundON && killAudio.play(); 
 
           
             let id = target.id  
@@ -201,7 +200,7 @@ let reLive = new Audio('./audio/reLive.mp3')
    
     if (element.parentElement.previousElementSibling){
           for (let i= 0 ; i< element.parentElement.previousElementSibling.children.length ; i++) {//loop over the children of the previous tr to get the adjacent element for the clicked td
-        if (+element.parentElement.previousElementSibling.children[i].id == +id) { // if the child id === clicked id - 6 assign it to previousElement
+        if (+element.parentElement.previousElementSibling.children[i].id === +id) { // if the child id === clicked id - 6 assign it to previousElement
            let  previousElement =  element.parentElement.previousElementSibling.children[i]
            return previousElement;
         }
@@ -217,7 +216,7 @@ let reLive = new Audio('./audio/reLive.mp3')
  
     if (element.parentElement.nextElementSibling){
          for (let i= 0 ; i< element.parentElement.nextElementSibling.children.length ; i++) {//loop over the children of the previous tr to get the adjacent element for the clicked td
-        if (+element.parentElement.nextElementSibling.children[i].id == +id) { // if the child id === clicked id + 6 assign it to previousElement
+        if (+element.parentElement.nextElementSibling.children[i].id === +id) { // if the child id === clicked id + 6 assign it to previousElement
            let  nextElement =  element.parentElement.nextElementSibling.children[i]
            return nextElement;
         }
@@ -231,14 +230,14 @@ let reLive = new Audio('./audio/reLive.mp3')
         
         if (count > 0) {
 
-            { props.soundON &&  wrongAudio.play();}
+            props.soundON &&  wrongAudio.play();
             return true;
            
            
           }else {
                
                changeSconceBgColor(ele , next , prev);
-               { props.soundON && sequenceAudio.play(); }
+               props.soundON && sequenceAudio.play();
                if (plKill === 1){
                    setPlayer1_has_kill(true)
                }else if (plKill === 2){
@@ -548,7 +547,7 @@ let reLive = new Audio('./audio/reLive.mp3')
                                      
                             })
                             
-                            { props.soundON &&  addAudio.play(); }
+                            props.soundON &&  addAudio.play();
 
                             player2Turn(); 
                             event.target.classList.add('has_balha')
@@ -586,7 +585,7 @@ let reLive = new Audio('./audio/reLive.mp3')
                                 const child = nextSibling.children[0] 
                                 if (event.target.nextElementSibling.classList.contains('has_balha') 
                                 && event.target.nextElementSibling.classList.contains('BBorderColor')){
-                                                /** audio effect */{ props.soundON && movingAudio.play()}
+                                                /** audio effect */props.soundON && movingAudio.play()
                                         
                                          setMoveLog(old => {
                                             return [...old , `${child.id} ${nextSibling.id}`]
@@ -657,7 +656,7 @@ let reLive = new Audio('./audio/reLive.mp3')
                                         return [...old , `${child.id} ${previousSibling.id}`]
                                      })
                                      
-                                       /** audio effect */ { props.soundON && movingAudio.play()}
+                                       /** audio effect */ props.soundON && movingAudio.play()
                                    
                                         previousSibling.classList.remove('BBorderColor') 
                                         previousSibling.classList.remove('has_balha')
@@ -713,7 +712,7 @@ let reLive = new Audio('./audio/reLive.mp3')
                     /** move balha down */
                     if (previousParentSibling){
                                 for (let i= 0 ; i< previousParentSibling.children.length ; i++) {//loop over the children of the previous tr to get the adjacent element for the clicked td
-                                    if (previousParentSibling.children[i].id == previousItemId) { // if the child id === clicked id - 6 assign it to previousElement
+                                    if (previousParentSibling.children[i].id === previousItemId) { // if the child id === clicked id - 6 assign it to previousElement
                                         previousElement =  previousParentSibling.children[i]}
                                 }
                                
@@ -721,7 +720,7 @@ let reLive = new Audio('./audio/reLive.mp3')
                                 
                                 if (previousElement.classList.contains('has_balha') 
                                 && previousElement.classList.contains('BBorderColor')){
-                                      /** audio effect */ { props.soundON && movingAudio.play()}
+                                      /** audio effect */ props.soundON && movingAudio.play()
 
                                     setMoveLog(old => {
                                         return [...old , `${child.id} ${previousElement.id}`]
@@ -779,7 +778,7 @@ let reLive = new Audio('./audio/reLive.mp3')
                     if (nextParentSibling){
                         for (let i= 0 ; i< nextParentSibling.children.length ; i++) {//loop over the children of the previous tr to get the adjacent element for the clicked td
                           
-                            if (nextParentSibling.children[i].id == nextItemId) { // if the child id === clicked id + 6 assign it to previousElement
+                            if (nextParentSibling.children[i].id === nextItemId) { // if the child id === clicked id + 6 assign it to previousElement
                                 nextElement =  nextParentSibling.children[i]
                             }
                         }
@@ -789,7 +788,7 @@ let reLive = new Audio('./audio/reLive.mp3')
                         
                         if (nextElement.classList.contains('has_balha') 
                         && nextElement.classList.contains('BBorderColor')){
-                              /** audio effect */ { props.soundON && movingAudio.play()}
+                              /** audio effect */ props.soundON && movingAudio.play()
                   
                             setMoveLog(old => {
                                 return [...old , `${child.id} ${nextElement.id}`]
@@ -886,7 +885,7 @@ let reLive = new Audio('./audio/reLive.mp3')
                                     })
                                    
                                    
-                                    { props.soundON && addAudio.play();} 
+                                     props.soundON && addAudio.play(); 
 
                                     if (!player2_has_kill){
                                                         
@@ -922,7 +921,7 @@ let reLive = new Audio('./audio/reLive.mp3')
                                             if (event.target.nextElementSibling.classList.contains('has_hajar') 
                                             && event.target.nextElementSibling.classList.contains('HBorderColor')){
                                                     
-                                                       /** audio effect */ { props.soundON && movingAudio.play()}
+                                                       /** audio effect */ props.soundON && movingAudio.play()
                                                     
                                                    setMoveLog(old => {
                                                         return [...old , `${child.id} ${nextSibling.id}`]
@@ -983,7 +982,7 @@ let reLive = new Audio('./audio/reLive.mp3')
                                             if(previousSibling.classList.contains('has_hajar') 
                                             && previousSibling.classList.contains('HBorderColor')){// check if the previous sibling allows to move by checking if it has a balha and the the border is colored
                                                     
-                                                   /** audio effect */ { props.soundON && movingAudio.play()}
+                                                   /** audio effect */ props.soundON && movingAudio.play()
 
                                                 setMoveLog(old => {
                                                     return [...old , `${child.id} ${previousSibling.id}`]
@@ -1051,7 +1050,7 @@ let reLive = new Audio('./audio/reLive.mp3')
                                 /** move hajar down */
                                 if (previousParentSibling){
                                             for (let i= 0 ; i< previousParentSibling.children.length ; i++) {//loop over the children of the previous tr to get the adjacent element for the clicked td
-                                                if (previousParentSibling.children[i].id == previousItemId) { // if the child id === clicked id - 6 assign it to previousElement
+                                                if (previousParentSibling.children[i].id === previousItemId) { // if the child id === clicked id - 6 assign it to previousElement
                                                     previousElement =  previousParentSibling.children[i]}
                                             }
                                            
@@ -1060,7 +1059,7 @@ let reLive = new Audio('./audio/reLive.mp3')
                                             if (previousElement.classList.contains('has_hajar') 
                                             && previousElement.classList.contains('HBorderColor')){
                                                 
-                                                   /** audio effect */ { props.soundON && movingAudio.play()}
+                                                   /** audio effect */ props.soundON && movingAudio.play()
 
                                                 
                                                 setMoveLog(old => {
@@ -1125,7 +1124,7 @@ let reLive = new Audio('./audio/reLive.mp3')
                                 if (nextParentSibling){
                                     for (let i= 0 ; i< nextParentSibling.children.length ; i++) {//loop over the children of the previous tr to get the adjacent element for the clicked td
                                       
-                                        if (nextParentSibling.children[i].id == nextItemId) { // if the child id === clicked id + 6 assign it to previousElement
+                                        if (nextParentSibling.children[i].id === nextItemId) { // if the child id === clicked id + 6 assign it to previousElement
                                             nextElement =  nextParentSibling.children[i]
                                         }
                                     }
@@ -1135,7 +1134,7 @@ let reLive = new Audio('./audio/reLive.mp3')
                                     
                                     if (nextElement.classList.contains('has_hajar') 
                                     && nextElement.classList.contains('HBorderColor')){
-                                           /** audio effect */ { props.soundON && movingAudio.play()}
+                                           /** audio effect */ props.soundON && movingAudio.play()
                                        
                                         setMoveLog(old => {
                                             return [...old , `${child.id} ${nextElement.id}`]
@@ -1254,7 +1253,7 @@ function forward (){
     if (!tarElement.isMoved  && forwardArray.length > 0 && !tarElement.isRemoved){
         
         
-        { props.soundON && movingAudio.play()};
+        props.soundON && movingAudio.play();
 
          let parentElement = document.getElementById(tarElement.parentId);
          
@@ -1293,7 +1292,7 @@ function forward (){
       
     }else if (tarElement.isMoved){
  
-        { props.soundON && movingAudio.play()};
+        props.soundON && movingAudio.play();
      let movedEle = document.getElementById(tarElement.id)
      
      tarElement.pervTd.classList.add('empty');
@@ -1317,7 +1316,7 @@ function forward (){
     forwardArray.pop()
     
     }else if (tarElement.isRemoved){
-        { props.soundON && movingAudio.play()};
+        props.soundON && movingAudio.play();
 
         
         let element = document.getElementById(tarElement.id)
@@ -1355,7 +1354,7 @@ function forward (){
     if(addLog.length > 0 && moveLog.length === 0){// remove the last play element added to the game table 
         let targetElementId = addLog[addLog.length-1]
        
-        {props.soundON && movingAudio.play();}
+        props.soundON && movingAudio.play();
 
         let targetTd = document.getElementById(+targetElementId)
       
@@ -1398,7 +1397,7 @@ function forward (){
           
              if (moveLog[moveLog.length - 1].length <= 24  ){
 
-              {props.soundON && movingAudio.play()};
+              props.soundON && movingAudio.play();
 
               let elementIdArray = moveLog[moveLog.length-1].split(" ") //divid the element index to sperate element to get the play element id form it
               let elementId = elementIdArray[0]
@@ -1544,39 +1543,39 @@ function forward (){
             console.log(allPossibleMoves)
            
                     
-            function bestMove(array) {
+        //     function bestMove(array) {
                 
-                 array.forEach(arr => {
+        //          array.forEach(arr => {
  
-                     arr.map((td , ind , arr) => {
+        //              arr.map((td , ind , arr) => {
                         
 
-                         if(td.classList.contains('empty') && td.nextSibling && td.nextSibling.nextSibling && td.nextSibling.classList.contains('has_balha') && td.nextSibling.nextSibling.classList.contains('has_balha')){
+        //                  if(td.classList.contains('empty') && td.nextSibling && td.nextSibling.nextSibling && td.nextSibling.classList.contains('has_balha') && td.nextSibling.nextSibling.classList.contains('has_balha')){
                             
-                             return [td , arr[0]]
+        //                      return [td , arr[0]]
 
-                            //  let downTd = findNextEle(td , +td.id + 6)
-                            //  let upTd = findPrevEle(td , +td.id - 6)
-                            //  console.log('td siblings',[downTd , upTd ,td.nextElementSibling , td.previousElementSibling ] )
+        //                     //  let downTd = findNextEle(td , +td.id + 6)
+        //                     //  let upTd = findPrevEle(td , +td.id - 6)
+        //                     //  console.log('td siblings',[downTd , upTd ,td.nextElementSibling , td.previousElementSibling ] )
                             
                              
-                            //  if (downTd){
+        //                     //  if (downTd){
                                 
                                 
-                            //          bestMove.push(td)
+        //                     //          bestMove.push(td)
 
-                            //  }
+        //                     //  }
  
-                         }else{
-                            return false;
-                         }
-                    })
-             })
+        //                  }else{
+        //                     return false;
+        //                  }
+        //             })
+        //      })
              
-           }
+        //    }
               
 
-       let best =   bestMove(allPossibleMoves)
+       //let best =   bestMove(allPossibleMoves)
            
            
           

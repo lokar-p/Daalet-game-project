@@ -24,11 +24,11 @@ const     phoneModeStyle = {
 
 }
 
-const buttonStyle ={
-    borderColor: !props.player1 && '#dbbbbb',
+// const buttonStyle ={
+//     borderColor: !props.player1 && '#dbbbbb',
 
   
-}
+// }
 
 const arrowBorderStyle = {
     borderColor: !props.player1 && '#dbbbbb',
@@ -74,7 +74,7 @@ const arrowStyle = {
     } 
 
     let avatar =  <div className="imgDiv" style={darkStyle}>
-    <img  src={props.user.avatarUrl}/>
+    <img alt="" src={props.user.avatarUrl}/>
     </div>
     let playerName =  <h5 >{props.user.firstName}</h5>
 
@@ -100,7 +100,7 @@ let   phoneMode  = props.phoneMode? <div className="sahanDiv">
 <div className="sahanIcon"  style={borderStyle}>
   
   <button className="elemCounter" style={{borderColor: props.player2 && '#dbbbbb'}}>{props.count}</button>
-  <img src={props.path}
+  <img alt="" src={props.path}
       className="elem" 
       id ={props.id} 
       onClick={props.playerTurn}

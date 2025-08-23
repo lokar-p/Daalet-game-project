@@ -1,10 +1,10 @@
 import React from "react";
 import {BrowserRouter , Routes , Route} from 'react-router-dom'
-import NavBar from "./layoutComponent/navBar";
-import Footer from "./layoutComponent/footer";
+//import NavBar from "./layoutComponent/navBar";
+//import Footer from "./layoutComponent/footer";
 import Main from "./main";
 import './styles.css'
-import SingUp from "./logingPage";
+//import SingUp from "./logingPage";
 import userData from "./userData";
 import HomePage from './HomePage';
 import LayoutComponent from "./layout";
@@ -22,6 +22,8 @@ export default function App (){
     const [isEnglish , setIsEnglish] = React.useState(false)
     const [soundON , setSoundON] = React.useState(false) 
   
+
+    console.log(isOnLine)
 // React.useEffect(() => {
 
 //    let tdArray = Object.values(document.querySelectorAll('td'));
@@ -83,19 +85,19 @@ React.useEffect(()=>{
  console.log(isBot)
     
 
- function handelFormChange(e){
+//  function handelFormChange(e){
 
-    setUsers(old =>{
-       return old.map((object)=>{
+//     setUsers(old =>{
+//        return old.map((object)=>{
         
-       }
+//        }
         
-       )
+//        )
        
 
-    })
+//     })
     
- }
+//  }
    
 
  function changeUserData(){
@@ -225,7 +227,7 @@ function handelFormChange(e){
       }
     
 
-    }, [])
+    }, [soundON])
   
     function soundToggle(){
       

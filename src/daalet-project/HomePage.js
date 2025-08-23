@@ -85,17 +85,17 @@ let gotonames = goTo ?
 form:
 <div className= 'optionContainer'  style={darkModeStyle}>
                 <div  className='gotoGameLink' onClick={goToNames}  style={darkModeStyle}> 
-                <img src='icon/daaletIcons/computer.svg' />
+                <img alt='' src='icon/daaletIcons/computer.svg' />
              {props.isArabic? 'العب مع صديق': 'play with friend'}
                 
                 </div>
                 <div onClick = {ErrorMessage}>
-                <img src='icon/daaletIcons/online.svg' />
+                <img alt='' src='icon/daaletIcons/online.svg' />
                 {props.isArabic? 'العب اونلاين': 'play Online'} 
                     
                 </div>
                 <div onClick = {botModeName}>
-                <img src='/icon/daaletIcons/vsComputer.svg' />
+                <img alt='' src='/icon/daaletIcons/vsComputer.svg' />
                 {props.isArabic? 'العب مع الكمبيوتر': 'play with computer'}
 
                         
