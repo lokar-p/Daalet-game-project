@@ -480,6 +480,7 @@ let reLive = new Audio('./audio/reLive.mp3')
                         el.classList.remove('HBorderColor')
                         el.style.height = height-6
                     }
+                    return null;
             })
            
                 e.parentElement.classList.add('BBorderColor')
@@ -499,6 +500,7 @@ let reLive = new Audio('./audio/reLive.mp3')
                          el.classList.remove('BBorderColor')
                          el.style.height = height-6
                     }
+                    return null;
             })
 
                 e.parentElement.classList.add('HBorderColor')
@@ -1509,6 +1511,7 @@ function forward (){
                 }else {
                     return td;
                 }
+                return null;
             })
 
         }

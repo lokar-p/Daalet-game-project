@@ -42,6 +42,7 @@ function THemesPopUp(props){
           td.classList.remove('borderDiv')
         }
         td.classList.add(Class)
+        return null;
     
     })
 
@@ -62,7 +63,7 @@ function THemesPopUp(props){
               td.style.backgroundColor = bgColor
               
             }
-           
+            return null;
           })
          
       
@@ -87,7 +88,9 @@ function createRandomColors(){
         let random2 = Math.floor(Math.random()*255)
         let random3 = Math.floor(Math.random()*255)
         color.style.backgroundColor = `rgb(${random1}, ${random2} , ${random3})`
-       })
+       
+      
+        return null;})
 
 
       

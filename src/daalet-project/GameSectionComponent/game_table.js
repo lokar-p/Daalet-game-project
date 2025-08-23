@@ -19,9 +19,10 @@ export default function GameTable(props){
                                     setTimeout(() => {
                                         ele.style.backgroundColor = 'rgb(101, 105, 105)'
                                     },100);
+                                    return null;
                             
                             
-                                    })
+    })
     }else if(!DarkMode){
         let evenTable = document.getElementsByClassName('evenTable')
         let evenTableArray = Object.values(evenTable);
@@ -32,7 +33,7 @@ export default function GameTable(props){
                                     
                                     ele.style.backgroundColor = oldColor
                             
-        
+                                    return null;
         })
     
 
