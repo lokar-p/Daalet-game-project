@@ -73,7 +73,7 @@ export default function GameTable(props){
                     <td className='empty evenTable'
                     onClick = {props.addElemToTable}
                    
-                    id = "3">
+                    id ={3}>
                     </td>
                     <td className='oddTable empty' 
                     onClick = {props.addElemToTable}

@@ -346,7 +346,7 @@ let reLive = new Audio('./audio/reLive.mp3')
         let prevElementId = Number(element.id) - 6 ;
         let prevElement =  findPrevEle(element , prevElementId);
         let nextElement = findNextEle(element , nextElementId)
-       
+
         if (nextParent && prevParent){
 
             if (nextElement.classList.contains(has) && prevElement.classList.contains(has)){
@@ -519,11 +519,11 @@ let reLive = new Audio('./audio/reLive.mp3')
     function addElemToTableANDMoveElement(event){
         
         if(player1_turn){
-             removeHajar(event.target , 'has_hajar'  )// if player 2 has kill and the  the turn on player 2 remove the player 1 element when it clicked
+                removeHajar(event.target , 'has_hajar'  )// if player 2 has kill and the  the turn on player 2 remove the player 1 element when it clicked
             
                  
                 if ( balha_count > 0  
-                     &&event.target.classList.contains('empty'))
+                     && event.target.classList.contains('empty'))
                    {// if count is greater than zero add element to the table when player click on the table
                     let nextSibling = event.target.nextSibling // next sibling for td 
                     let previousSibling = event.target.previousSibling// previous sibling for td
@@ -585,6 +585,7 @@ let reLive = new Audio('./audio/reLive.mp3')
                             if(nextSibling){// check if there is a next sibling to prevent the error of not finding next sibling
                               
                                 const child = nextSibling.children[0] 
+                                console.log('child of next sibling', child)
                                 if (event.target.nextElementSibling.classList.contains('has_balha') 
                                 && event.target.nextElementSibling.classList.contains('BBorderColor')){
                                                 /** audio effect */props.soundON && movingAudio.play()
@@ -714,9 +715,14 @@ let reLive = new Audio('./audio/reLive.mp3')
                     /** move balha down */
                     if (previousParentSibling){
                                 for (let i= 0 ; i< previousParentSibling.children.length ; i++) {//loop over the children of the previous tr to get the adjacent element for the clicked td
-                                    if (previousParentSibling.children[i].id === previousItemId) { // if the child id === clicked id - 6 assign it to previousElement
+                                    if (+previousParentSibling.children[i].id === +previousItemId) { // if the child id === clicked id - 6 assign it to previousElement
                                         previousElement =  previousParentSibling.children[i]}
-                                }
+                                       
+                                    }
+                                    //  console.log("the clicked element", event.target)
+                                        // console.log('the previous td element  id should be ',previousParentSibling.children[i])
+                                        //  console.log("the previous parent element", previousParentSibling)
+                                        //  console.log("the element should be: ",previousElement)
                                
                                 let  child = previousElement.children[0]; // get the balha form the adjacent'in vertical matter' td to move it to the clicked td
                                 
@@ -780,14 +786,14 @@ let reLive = new Audio('./audio/reLive.mp3')
                     if (nextParentSibling){
                         for (let i= 0 ; i< nextParentSibling.children.length ; i++) {//loop over the children of the previous tr to get the adjacent element for the clicked td
                           
-                            if (nextParentSibling.children[i].id === nextItemId) { // if the child id === clicked id + 6 assign it to previousElement
+                            if (+nextParentSibling.children[i].id === +nextItemId) { // if the child id === clicked id + 6 assign it to previousElement
                                 nextElement =  nextParentSibling.children[i]
                             }
                         }
 
                       
                         let  child = nextElement.children[0]; // get the balha form the adjacent'in vertical matter' td to move it to the clicked td
-                        
+                             console.log("the uper box to move balaha on :" , nextElement)
                         if (nextElement.classList.contains('has_balha') 
                         && nextElement.classList.contains('BBorderColor')){
                               /** audio effect */ props.soundON && movingAudio.play()
@@ -1052,12 +1058,17 @@ let reLive = new Audio('./audio/reLive.mp3')
                                 /** move hajar down */
                                 if (previousParentSibling){
                                             for (let i= 0 ; i< previousParentSibling.children.length ; i++) {//loop over the children of the previous tr to get the adjacent element for the clicked td
-                                                if (previousParentSibling.children[i].id === previousItemId) { // if the child id === clicked id - 6 assign it to previousElement
+                                                if (+previousParentSibling.children[i].id === +previousItemId) { // if the child id === clicked id - 6 assign it to previousElement
+                                                
+                                                    console.log("the element id is " , previousParentSibling)
+                                                    console.log("type of previous sibling id",typeof(previousItemId))
+                                                    console.log("the id of the table contain hajar that supuse to move",previousParentSibling.children[i].id)
                                                     previousElement =  previousParentSibling.children[i]}
                                             }
-                                           
+                                            console.log("the place the element should come from : ", previousParentSibling)
+                                            console.log("previous element should be :",previousElement)
                                             let  child = previousElement.children[0]; // get the balha form the adjacent'in vertical matter' td to move it to the clicked td
-                                            
+                                            console.log ("checking the child",child)
                                             if (previousElement.classList.contains('has_hajar') 
                                             && previousElement.classList.contains('HBorderColor')){
                                                 
@@ -1126,7 +1137,7 @@ let reLive = new Audio('./audio/reLive.mp3')
                                 if (nextParentSibling){
                                     for (let i= 0 ; i< nextParentSibling.children.length ; i++) {//loop over the children of the previous tr to get the adjacent element for the clicked td
                                       
-                                        if (nextParentSibling.children[i].id === nextItemId) { // if the child id === clicked id + 6 assign it to previousElement
+                                        if (+nextParentSibling.children[i].id === +nextItemId) { // if the child id === clicked id + 6 assign it to previousElement
                                             nextElement =  nextParentSibling.children[i]
                                         }
                                     }
