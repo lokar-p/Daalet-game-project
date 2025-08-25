@@ -45,13 +45,13 @@ export default function GameTable(props){
   
  let phoneModeStyle = {// gives a margin and width to table when the size of the screen becomes a smaller 
     margin : '5px 10px 5px 10px',
-    width: '95%',
+    width : '95%',
 
  }
  let diskTopModeStyle = {
     margin : props.diskTopMode ? '30px 30px 10px 70px' : '30px 10px',
  }
- 
+
  
     return (
         <table style={props.phoneMode ? phoneModeStyle : diskTopModeStyle}>

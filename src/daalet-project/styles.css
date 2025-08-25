@@ -8,7 +8,7 @@ font-style: normal;
 font-weight: 400;
 font-size: 20px;
 line-height: 24px;
-
+height: auto;
 
 
 
@@ -141,7 +141,8 @@ main {
     transition:500ms; 
     display: flex;
     justify-content:end;
-    height: 535px;
+    
+    height: 565px;
     
 
 }
@@ -331,7 +332,7 @@ table {
     background-color:rgba(255, 255, 255, 0); 
     border-radius: 5px;
     width: 600px;
-    min-width: 420px;
+    min-width: 340px;
     
     box-shadow: 1px 2px 8px 4px rgba(0, 0, 0, 0.255);
     border-spacing:0px;
@@ -1044,3 +1045,5 @@ form{
     border-left:0px;
 
 }
+/* adding responsive design to fit phone size */
+
