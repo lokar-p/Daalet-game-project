@@ -9,10 +9,10 @@ import userData from "./userData";
 import HomePage from './HomePage';
 import LayoutComponent from "./layout";
 
-
+//creating a context to hold the value of dark them state
 export const DarkTheme = React.createContext()
-
-
+// creating a context to hold phoneModeContext
+export const phoneModeContext = React.createContext()
 export default function App (){
     const [isOfLine , setIsOfLine] = React.useState(false)
     const [isOnLine , setIsOnLine] = React.useState(false)
@@ -249,6 +249,7 @@ function handelFormChange(e){
   const [diskTopMode , setDiskTopMode] = React.useState();
   const [phoneMode , setPhoneMode] = React.useState();
 
+ 
    React.useEffect(() => {
       if(window.innerWidth >= 900){
          setDiskTopMode(true);
@@ -306,6 +307,7 @@ function handelFormChange(e){
                         
                         <Route element = {
                           <DarkTheme.Provider value={isDarkMode}>
+                           <phoneModeContext.Provider value={phoneMode}>
                            <LayoutComponent 
                                           soundON = {soundON}
                                           soundToggle = {soundToggle} 
@@ -314,7 +316,9 @@ function handelFormChange(e){
                                           isArabic = {isArabic}
                                           handelLanguageChange = {languageToggle}
                             />
+                            </phoneModeContext.Provider>
                            </DarkTheme.Provider>
+
                         }>
 
                         <Route path="/" element = { 
