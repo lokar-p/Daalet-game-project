@@ -26,6 +26,7 @@ export default function WonTable(props){
 
 
     let phoneStyle = {
+        width : '280px',
         margin: props.phoneMode?  '40px' : '30px 40px 30px 50px',
     }
     React.useEffect(()=>{// sound effect for winning ;

@@ -5,7 +5,7 @@ import PlayerTable from "./GameSectionComponent/player_table";
 import WonTable from "./wonTable";
 import {nanoid} from 'nanoid';
 import PlayerStatus from "./GameSectionComponent/player_status";
-
+import ChoseWhoToStart from "./choseToStart";
 export default function Main(props){
     const [addLog , setAddLog] = React.useState([])
     const[moveLog , setMoveLog] = React.useState([])
@@ -20,7 +20,7 @@ export default function Main(props){
     const [changeBrRadius , setChangeBrRadius] = React.useState(0);
     const [playerWon , setPlayerWon] = React.useState(false);
     const [whoRiz, setWhoRiz] = React.useState();
-    
+    const [startGame , setStartGame] = React.useState(false);
 
     
 
@@ -1658,7 +1658,7 @@ player2Turn = {player2Turn}
 player1_turn = {player1_turn}
 player2_turn = {player2_turn}
 /> : null;
-
+console.log('user shuld be ',props.users)
 let player2Status = props.phoneMode ?  <PlayerStatus 
 phoneMode = {props.phoneMode}
 isArabic = {props.isArabic}
@@ -1705,10 +1705,63 @@ let diskTopModeStyle = {
     display: 'flex'
 
 }
+// creating a function that chose who to start the game based on user choice in choseWhoToStart popup window
 
+function startingTheGame(e){
+    let randomNumber = Math.floor(Math.random()*2)
+    console.log(randomNumber)
+    if (e.target.classList.contains('player-1-Option') || e.target.parentElement.classList.contains('player-1-Option')){
+        let targetEle = document.getElementsByClassName('player-1-Option')[0]
+        targetEle.style.border = ' solid 2px #a67677'
+        targetEle.style.transition = '500ms'
+        targetEle.style.boxShadow = '1px 2px 3px 4px #a09d9d9c'
+        player1Turn()
+        setTimeout(()=>{
+        setStartGame(true)
+        }, 1500)
+       
+    }else if (e.target.classList.contains("player-2-Option") || e.target.parentElement.classList.contains("player-2-Option") ){
+        let targetEle = document.getElementsByClassName('player-2-Option')[0]
+        targetEle.style.border = ' solid 2px #ffe2c1ff'
+         targetEle.style.transition = '500ms'
+        targetEle.style.boxShadow = '0px 2px 7px 4px #a09d9d9c'
+        player2Turn()
+        setTimeout(()=>{
+        setStartGame(true)
+        }, 1500)
+       
+    }else {
+        if(randomNumber === 0){
+             let targetEle = document.getElementsByClassName('player-1-Option')[0]
+        targetEle.style.border = ' solid 2px #a67677'
+        targetEle.style.transition = '500ms'
+        targetEle.style.boxShadow = '1px 2px 3px 4px #a09d9d9c'
+        player1Turn()
+        setTimeout(()=>{
+        setStartGame(true)
+        }, 1500)
+
+        }else{
+             let targetEle = document.getElementsByClassName('player-2-Option')[0]
+        targetEle.style.border = ' solid 2px #ffe2c1ff'
+         targetEle.style.transition = '500ms'
+        targetEle.style.boxShadow = '1px 2px 3px 4px #a09d9d9c'
+        player2Turn()
+        setTimeout(()=>{
+        setStartGame(true)
+        }, 1500)
+        }
+    }
+
+
+}
  
     return (
         <main style = {props.phoneMode ? phoneModeStyle :diskTopModeStyle}>
+        {!startGame &&  <ChoseWhoToStart 
+        startingTheGame = {startingTheGame}
+        
+        /> }
          {!playerWon && player1Status}
          {props.isArabic &&  playerTable}
          {props.isEnglish && sidbar}

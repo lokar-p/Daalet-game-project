@@ -2,6 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import {DarkTheme} from'./app';
 
+
 export default function HomePage(props) {
 
   const DarkMode = React.useContext(DarkTheme)
@@ -11,7 +12,7 @@ export default function HomePage(props) {
   let darkModeStyle = {
              color: DarkMode? 'rgb(223, 235, 236)': 'rgb(0,108,133)',
              backgroundColor: DarkMode ? 'rgb(134, 134, 134)'  :' rgb(223, 235, 236)',
-             fontSize: !props.diskTopMode? '14px':'auto',
+             fontSize: !props.diskTopMode? '12px':'auto',
             
   } 
    
@@ -22,7 +23,7 @@ export default function HomePage(props) {
   let responsiveDesign =  {
     color: DarkMode? 'rgb(223, 235, 236)': 'rgb(0,108,133)',
     backgroundColor: DarkMode ? 'rgb(134, 134, 134)'  :' rgb(223, 235, 236)',
-    fontSize: !props.diskTopMode? '14px':'auto',
+    fontSize: !props.diskTopMode? '12px':'auto',
     margin: !props.diskTopMode? ' 0px 50px 5px' :' 0px 250px 5px',
 } 
 

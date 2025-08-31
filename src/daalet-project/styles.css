@@ -136,16 +136,97 @@ height: auto;
     align-items: center;
    
 }
+
+
 /* main content style including side bar and game table and player table*/
 main {
+    position: relative;
     transition:500ms; 
     display: flex;
     justify-content:end;
-    
     height: 600px;
     
 
 }
+
+.choseWhoToStartContainer{
+    position:absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    backdrop-filter: blur(6px);
+}
+.whoTostartOptions{
+    display: grid;
+    /* grid-template-columns: repeat(2 , 1fr);
+    grid-template-rows: repeat(2 , 1fr); */
+    grid-template-areas: 
+    "header header"
+    "player1 player2"
+    "coin coin "
+    
+    ;
+    row-gap : 20px;
+    column-gap: 10px;
+    padding : 15px;
+    height: 220px;
+    width: 250px;
+    background-color:rgb(0,108,133) ;
+    box-shadow: 0px 2px 6px 2px rgba(174, 220, 255, 0.695);
+    border-radius: 5px;
+}
+.options-header{
+    display: flex;
+    justify-content: center;
+    grid-area: header;
+    color:#e6e6f0
+}
+.player-1-Option{
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    grid-area: player1;
+    height: 100px;
+    font-size: small;
+    padding: 5px;
+    
+}
+.player-1-Option > img , .player-2-Option > img {
+    height: 70%;
+}
+.player-1-Option > p , .player-2-Option > p{
+    margin : 0px;
+}
+.player-2-Option {
+    cursor: pointer;
+     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    grid-area: player2;
+    height: 100px;
+    font-size: small;
+    
+}
+.RandomOption{
+    cursor: pointer;
+    grid-area: coin;
+    font-size: medium;
+    padding : 10px;
+    justify-self: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height : 35px ;
+    width: 120px;
+}
+
 
 /* sid bar style*/
 
@@ -186,7 +267,7 @@ main {
     padding-top: 10px;
     padding-bottom: 10px;
     font-size: 16px;
-   
+   z-index: 1;
     box-shadow: 1px 3px 10px rgba(0, 0, 0, 0.451);
     
 
@@ -744,7 +825,7 @@ footer > div > a > img:hover{
     background: linear-gradient(90deg,
     rgba(0,108,133,1)3%,
     rgba(0,108,133,1)100%);
-     width: 400px;
+    width:  400px;
      height: 400px;
      margin: 30px 80px;
      border-radius: 14px;
@@ -869,14 +950,24 @@ footer > div > a > img:hover{
    border: #083942 1px solid;
    border-radius: 10px 10px 0px 0px;
    margin-top: 5px;
-
+   padding: 10px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
 
  }
+.home-cover-image{
+    width: 100%;
+    height: 100%;
+    
+    border-radius: 10px 10px 0px 0px;
+}
+
 .optionContainer{
     padding: 10px;
     display:flex;
     justify-content: space-around; 
-    color:rgb(49, 177, 206); 
+    color:rgb(0,108,133) ;
     font-weight: 500;
     font-size: medium;
     margin-top: 20px;

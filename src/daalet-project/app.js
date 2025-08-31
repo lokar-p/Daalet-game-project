@@ -13,6 +13,10 @@ import LayoutComponent from "./layout";
 export const DarkTheme = React.createContext()
 // creating a context to hold phoneModeContext
 export const phoneModeContext = React.createContext()
+// creating a context ot hold users data 
+export const usersDataContext = React.createContext()
+//creating a context to hold isArabic state value 
+export const ArabicLanguageContext = React.createContext()
 export default function App (){
     const [isOfLine , setIsOfLine] = React.useState(false)
     const [isOnLine , setIsOnLine] = React.useState(false)
@@ -280,21 +284,21 @@ function handelFormChange(e){
    let message = document.createElement('div')
    message.style.position = 'absolute';
    message.style.bottom = '20px'; 
-   message.style.left = '30%'
+   message.style.left = phoneMode?'20%':'30%';
    message.style.width = 'fit-content';
    message.style.height = '20px'
    message.style.backgroundColor = 'inherit';
    message.style.borderColor =  'rgb(0,108,133)'
    message.style.borderWidth = '0px'
    message.style.borderStyle = 'solid'
-   message.style.borderRadius = '25px'
+   message.style.borderRadius = '5px'
    message.style.color = 'rgb(0,108,133)'
    message.style.fontSize = 'small'
    message.style.transition = '1s'
    message.style.boxShadow = '-3px 6px 7px rgba(11, 11, 11, 0.264)'
-   message.style.padding = '10px'
-   message.style.fontWeight = phoneMode? 'small' :'bold';
-   message.style.fontSize = phoneMode?'12px': '15px';
+   message.style.padding = '5px'
+   message.style.fontWeight = phoneMode? 'smaller' :'small';
+   message.style.fontSize = phoneMode?'10px': '12px';
    message.style.backgroundColor = 'rgb(233, 245, 248)'
   
 
@@ -339,7 +343,10 @@ function handelFormChange(e){
                                              //      </DarkTheme.Provider>
                                                    }/>
 
-                        <Route path="/gameTable" element = { <Main  
+                        <Route path="/gameTable" element = { 
+                                                  <ArabicLanguageContext.Provider value = {isArabic}>
+                                                  <usersDataContext.Provider value={users} >
+                                                   <Main  
                                                    isBot = {isBot}
                                                    phoneMode = {phoneMode}
                                                    diskTopMode = {diskTopMode}
@@ -351,7 +358,10 @@ function handelFormChange(e){
                                                    isDarkMode = {isDarkMode} 
                                                    users = {users}
                                                    
-                                                   />} />
+                                                   />
+                                                   </usersDataContext.Provider>
+                                                   </ArabicLanguageContext.Provider>
+                                                   } />
 
                         </Route> 
                       
