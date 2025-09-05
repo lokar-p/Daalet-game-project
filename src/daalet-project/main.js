@@ -22,7 +22,13 @@ export default function Main(props){
     const [whoRiz, setWhoRiz] = React.useState();
     const [startGame , setStartGame] = React.useState(false);
 
-    
+   
+/** bug to fix: 
+ * in ai mode when player dose not add his name 
+ * there is no name shown for ai and the player play
+ *  by krbaa (the default name for ai )
+ * */ 
+
 
 /*** audio effect containers */
 
@@ -173,7 +179,7 @@ let reLive = new Audio('./audio/reLive.mp3')
     }
 
  /** change the sequence bg color to green  */
-   function changeSconceBgColor(element , next , prev){// change bg color to green when there is a secoances of 3 elements
+   function changeSequenceBgColor(element , next , prev){// change bg color to green when there is a secoances of 3 elements
     let elementBgColor = window.getComputedStyle(element , null).getPropertyValue('background-color')
     let nextBgColor = window.getComputedStyle(next, null).getPropertyValue('background-color')
     let prevBgColor = window.getComputedStyle(prev, null).getPropertyValue('background-color')
@@ -226,17 +232,37 @@ let reLive = new Audio('./audio/reLive.mp3')
 
 
  }
-  function preventSconce (count , ele , next , prev , plKill){//prevent the player from making a sequence if the count > 0 if count = 0 allow the player to add element to the game table
+  function preventSequence (count , ele , next , prev , plKill){
+    //prevent the player from making a sequence if the count > 0 if count = 0 
+    // allow the player to add element to the game table
         
         if (count > 0) {
+           
+            //this code preventing the wrong sound effect when the turn for ai
+            // because the way ai check for the wrong move trigger the sound when no needs
+            // to play the sound , 
+            console.log("is it player one turn and ai move " , props.isBot , player1_turn)
+            if (props.isBot && !player1_turn){
+                // if not ai turn trigger the suond when the other player 
+                // make wrong move
+                 props.soundON &&  wrongAudio.play();
+            }else if (!props.isBot){
+                // if player not play against ai , (players against each other )
+                // trigger sound effect for illegal move 
+                 props.soundON &&  wrongAudio.play();
+            }
+            
+           
+           
 
-            props.soundON &&  wrongAudio.play();
+            // end of adding and removing click event to the element
+            console.log('this move is not allowed') 
             return true;
            
            
-          }else {
+          }else if (count === 0) {
                
-               changeSconceBgColor(ele , next , prev);
+               changeSequenceBgColor(ele , next , prev);
                props.soundON && sequenceAudio.play();
                if (plKill === 1){
                    setPlayer1_has_kill(true)
@@ -249,7 +275,7 @@ let reLive = new Audio('./audio/reLive.mp3')
   
     /** check if there is a sequence of 3 element of the same type ' balha or hajar '
      *  and if there is a sequence change the player has kill to true */
-    function CheckForSconce(element ,next , prev , has , playerKill ,nextParent , prevParent , playerCount){
+    function CheckForSequence(element ,next , prev , has , playerKill ,nextParent , prevParent , playerCount){
          
         if (next && prev){
             if (next.classList.contains(has) && prev.classList.contains(has)){
@@ -257,19 +283,19 @@ let reLive = new Audio('./audio/reLive.mp3')
                     if (next.nextElementSibling && prev.previousElementSibling){
                     
                         if(!next.nextElementSibling.classList.contains(has) && !prev.previousElementSibling.classList.contains(has)){
-                            return   preventSconce (playerCount , element , next, prev, playerKill)// if balha count or hajar count > 0 prevent the player from making a sequence of 3 element and if not allow the player to add element to the table                         
+                            return   preventSequence (playerCount , element , next, prev, playerKill)// if balha count or hajar count > 0 prevent the player from making a sequence of 3 element and if not allow the player to add element to the table                         
                         
                         }
                     } else if (next.nextElementSibling && !prev.previousElementSibling){
                     
                         if(!next.nextElementSibling.classList.contains(has)){
-                            return   preventSconce (playerCount , element , next, prev, playerKill)// if balha count or hajar count > 0 prevent the player from making a sequence of 3 element  and if not allow the player to add element to the table 
+                            return   preventSequence (playerCount , element , next, prev, playerKill)// if balha count or hajar count > 0 prevent the player from making a sequence of 3 element  and if not allow the player to add element to the table 
                             
                         }
                     } else if (!next.nextElementSibling && prev.previousElementSibling){
                     
                         if(!prev.previousElementSibling.classList.contains(has)){
-                            return   preventSconce (playerCount , element , next, prev, playerKill)// if balha count or hajar count > 0 prevent the player from making a sequence of 3 element and if not allow the player to add element to the table   
+                            return   preventSequence (playerCount , element , next, prev, playerKill)// if balha count or hajar count > 0 prevent the player from making a sequence of 3 element and if not allow the player to add element to the table   
                                             
                         }
                     }
@@ -282,12 +308,12 @@ let reLive = new Audio('./audio/reLive.mp3')
                 if (nextsib && nextsib.classList.contains(has)){
                     if(nextsib.nextElementSibling){
                         if(!nextsib.nextElementSibling.classList.contains(has)){
-                            return   preventSconce (playerCount , element , next, nextsib, playerKill)// if balha count or hajar count > 0 prevent the player from making a sequence of 3 element and if not allow the player to add element to the table   
+                            return   preventSequence (playerCount , element , next, nextsib, playerKill)// if balha count or hajar count > 0 prevent the player from making a sequence of 3 element and if not allow the player to add element to the table   
                            
                         }
                       }else {
 
-                        return   preventSconce (playerCount , element , next, nextsib, playerKill)// if balha count or hajar count > 0 prevent the player from making a sequence of 3 element and if not allow the player to add element to the table  
+                        return   preventSequence (playerCount , element , next, nextsib, playerKill)// if balha count or hajar count > 0 prevent the player from making a sequence of 3 element and if not allow the player to add element to the table  
                        
                     }
 
@@ -299,12 +325,12 @@ let reLive = new Audio('./audio/reLive.mp3')
                     if(prevsib.previousElementSibling){
                         if(!prevsib.previousElementSibling.classList.contains(has)){
 
-                            return   preventSconce (playerCount , element , prev, prevsib , playerKill)// if balha count or hajar count > 0 prevent the player from making a sequence of 3 element and if not allow the player to add element to the table  
+                            return   preventSequence (playerCount , element , prev, prevsib , playerKill)// if balha count or hajar count > 0 prevent the player from making a sequence of 3 element and if not allow the player to add element to the table  
 
                         }
                        
                     }else {
-                        return   preventSconce (playerCount , element , prev, prevsib , playerKill)// if balha count or hajar count > 0 prevent the player from making a sequence of 3 element   and if not allow the player to add element to the table
+                        return   preventSequence (playerCount , element , prev, prevsib , playerKill)// if balha count or hajar count > 0 prevent the player from making a sequence of 3 element   and if not allow the player to add element to the table
                         
                     }
 
@@ -318,7 +344,7 @@ let reLive = new Audio('./audio/reLive.mp3')
                       if(nextsib.classList.contains(has)){
                           if(!nextsib.nextElementSibling.classList.contains(has)){
 
-                            return   preventSconce (playerCount , element , next, nextsib , playerKill)
+                            return   preventSequence (playerCount , element , next, nextsib , playerKill)
                              
                           }
                       
@@ -332,7 +358,7 @@ let reLive = new Audio('./audio/reLive.mp3')
               if (prev.classList.contains(has)) {
                   if(prevsib.classList.contains(has)){
                       if(!prevsib.previousElementSibling.classList.contains(has)){
-                        return   preventSconce (playerCount , element , prev , prevsib , playerKill)
+                        return   preventSequence (playerCount , element , prev , prevsib , playerKill)
                         
                       }
                    }
@@ -357,7 +383,7 @@ let reLive = new Audio('./audio/reLive.mp3')
                 if (nextToNextElement && prevToPrevElement){
                 
                     if(!nextToNextElement.classList.contains(has) && !prevToPrevElement.classList.contains(has)){
-                    return   preventSconce (playerCount , element , nextElement , prevElement , playerKill)// if balha count or hajar count > 0 prevent the player from making a sequence of 3 element   and if not allow the player to add element to the table
+                    return   preventSequence (playerCount , element , nextElement , prevElement , playerKill)// if balha count or hajar count > 0 prevent the player from making a sequence of 3 element   and if not allow the player to add element to the table
                         
                     
                     }
@@ -366,13 +392,13 @@ let reLive = new Audio('./audio/reLive.mp3')
                     
                     
                     if(!nextToNextElement.classList.contains(has)){
-                        return   preventSconce (playerCount , element , nextElement , prevElement , playerKill)// if balha count or hajar count > 0 prevent the player from making a sequence of 3 element   and if not allow the player to add element to the table
+                        return   preventSequence (playerCount , element , nextElement , prevElement , playerKill)// if balha count or hajar count > 0 prevent the player from making a sequence of 3 element   and if not allow the player to add element to the table
                     }
                 } else if (!nextToNextElement && prevToPrevElement){
                 
                     if(!prevToPrevElement.classList.contains(has)){
 
-                        return   preventSconce (playerCount , element , nextElement , prevElement , playerKill)// if balha count or hajar count > 0 prevent the player from making a sequence of 3 element   and if not allow the player to add element to the table 
+                        return   preventSequence (playerCount , element , nextElement , prevElement , playerKill)// if balha count or hajar count > 0 prevent the player from making a sequence of 3 element   and if not allow the player to add element to the table 
                     }
                 }
                     
@@ -385,17 +411,17 @@ let reLive = new Audio('./audio/reLive.mp3')
                     /***** checked for both 'hajar and balha ' . just work fine*/
                 let nextToNextElement = findNextEle(nextElement , nextElementId + 6)
                 if (nextToNextElement && nextToNextElement.classList.contains(has)){
-                    let nextOfSconce = findNextEle(nextToNextElement ,  nextElementId + 12)
+                    let nextOfSequence = findNextEle(nextToNextElement ,  nextElementId + 12)
             
-                    if (nextOfSconce) {
-                        if(!nextOfSconce.classList.contains(has)){
+                    if (nextOfSequence) {
+                        if(!nextOfSequence.classList.contains(has)){
                             
-                            return   preventSconce (playerCount , element , nextElement , nextToNextElement , playerKill)// if balha count or hajar count > 0 prevent the player from making a sequence of 3 element   and if not allow the player to add element to the table
+                            return   preventSequence (playerCount , element , nextElement , nextToNextElement , playerKill)// if balha count or hajar count > 0 prevent the player from making a sequence of 3 element   and if not allow the player to add element to the table
                         }
                         
                     }
                         else {
-                                return   preventSconce (playerCount , element , nextElement , nextToNextElement , playerKill)// if balha count or hajar count > 0 prevent the player from making a sequence of 3 element   and if not allow the player to add element to the table
+                                return   preventSequence (playerCount , element , nextElement , nextToNextElement , playerKill)// if balha count or hajar count > 0 prevent the player from making a sequence of 3 element   and if not allow the player to add element to the table
                         
                         }
 
@@ -408,15 +434,15 @@ let reLive = new Audio('./audio/reLive.mp3')
                 /***** checked . and it is work fine*/
                 let prevToPrevElement = findPrevEle(prevElement , prevElementId -6)
                 if (prevToPrevElement && prevToPrevElement.classList.contains(has)){
-                    let prevOfSconce = findPrevEle(prevToPrevElement , prevElementId - 12 )
-                    if(prevOfSconce){
+                    let prevOfSequence = findPrevEle(prevToPrevElement , prevElementId - 12 )
+                    if(prevOfSequence){
                     
-                        if(!prevOfSconce.classList.contains(has)){
-                            return   preventSconce (playerCount , element , prevElement , prevToPrevElement , playerKill)// if balha count or hajar count > 0 prevent the player from making a sequence of 3 element   and if not allow the player to add element to the table
+                        if(!prevOfSequence.classList.contains(has)){
+                            return   preventSequence (playerCount , element , prevElement , prevToPrevElement , playerKill)// if balha count or hajar count > 0 prevent the player from making a sequence of 3 element   and if not allow the player to add element to the table
                         
                         }
                     }else {
-                            return   preventSconce (playerCount , element , prevElement , prevToPrevElement , playerKill)// if balha count or hajar count > 0 prevent the player from making a sequence of 3 element   and if not allow the player to add element to the table
+                            return   preventSequence (playerCount , element , prevElement , prevToPrevElement , playerKill)// if balha count or hajar count > 0 prevent the player from making a sequence of 3 element   and if not allow the player to add element to the table
                     }
 
                 }
@@ -433,9 +459,9 @@ let reLive = new Audio('./audio/reLive.mp3')
           if (nextElement.classList.contains(has)) {
                   let nextToNextElement = findNextEle(nextElement , nextElementId + 6)
                   if(nextToNextElement.classList.contains(has)){
-                    let nextOfSconce = findNextEle(nextToNextElement ,  nextElementId + 12)
-                      if(!nextOfSconce.classList.contains(has)){
-                        return   preventSconce (playerCount , element , nextElement , nextToNextElement , playerKill)// if balha count or hajar count > 0 prevent the player from making a sequence of 3 element   and if not allow the player to add element to the table
+                    let nextOfSequence = findNextEle(nextToNextElement ,  nextElementId + 12)
+                      if(!nextOfSequence.classList.contains(has)){
+                        return   preventSequence (playerCount , element , nextElement , nextToNextElement , playerKill)// if balha count or hajar count > 0 prevent the player from making a sequence of 3 element   and if not allow the player to add element to the table
                           
                       }
                   
@@ -449,9 +475,9 @@ let reLive = new Audio('./audio/reLive.mp3')
           if (prevElement.classList.contains(has)) {
             let prevToPrevElement = findPrevEle(prevElement , prevElementId -6)
               if(prevToPrevElement.classList.contains(has)){
-                let prevOfSconce = findPrevEle(prevToPrevElement , prevElementId - 12 )
-                  if(!prevOfSconce.classList.contains(has)){
-                    return   preventSconce (playerCount , element , prevElement , prevToPrevElement , playerKill)// if balha count or hajar count > 0 prevent the player from making a sequence of 3 element   and if not allow the player to add element to the table
+                let prevOfSequence = findPrevEle(prevToPrevElement , prevElementId - 12 )
+                  if(!prevOfSequence.classList.contains(has)){
+                    return   preventSequence (playerCount , element , prevElement , prevToPrevElement , playerKill)// if balha count or hajar count > 0 prevent the player from making a sequence of 3 element   and if not allow the player to add element to the table
                      
                   }
                }
@@ -469,7 +495,7 @@ let reLive = new Audio('./audio/reLive.mp3')
         let tdArray = Object.values(td)
        
         if(has === 'balha'){
-            tdArray.map(el => 
+            tdArray.map(el =>  
                 {
                    let height =   window.getComputedStyle(el , null).getPropertyValue('height')
                   
@@ -530,7 +556,7 @@ let reLive = new Audio('./audio/reLive.mp3')
                     let previousParentSibling = event.target.parentElement.previousElementSibling//previous parent sibling for clicked td
                     let nextParentSibling = event.target.parentElement.nextElementSibling//next parent sibling for clicked td
                      
-                     let wrongMove = CheckForSconce(event.target , nextSibling , previousSibling , 'has_balha', 1 ,nextParentSibling , previousParentSibling , balha_count)// check for sequence function return a preventSconce function , preventSconce return true if balha_count != 0  and false if balha_count = 0 and it change the BgColor for the sequence 
+                     let wrongMove = CheckForSequence(event.target , nextSibling , previousSibling , 'has_balha', 1 ,nextParentSibling , previousParentSibling , balha_count)// check for sequence , return a preventSequence function , preventSequence return true if balha_count != 0  and false if balha_count = 0 and it change the BgColor for the sequence 
                     if (wrongMove) {
                         let oldBgColor = window.getComputedStyle(event.target , null).getPropertyValue('background-color')
                         event.target.style.backgroundColor = 'rgb(255, 0, 0)'
@@ -628,9 +654,9 @@ let reLive = new Audio('./audio/reLive.mp3')
                                                         
                                                    }, 1000)
                                        
-                                       CheckForSconce(event.target , nextSibling , previousSibling , 'has_balha', 1 ,nextParentSibling , previousParentSibling )
+                                       CheckForSequence(event.target , nextSibling , previousSibling , 'has_balha', 1 ,nextParentSibling , previousParentSibling , balha_count)
                                        
-                                       let checkValue =   CheckForSconce(event.target , nextSibling , previousSibling , 'has_balha', 1 ,nextParentSibling , previousParentSibling )
+                                       let checkValue =   CheckForSequence(event.target , nextSibling , previousSibling , 'has_balha', 1 ,nextParentSibling , previousParentSibling , balha_count )
                                        
                                        if (checkValue === false){
                                       
@@ -688,10 +714,10 @@ let reLive = new Audio('./audio/reLive.mp3')
                                       }, 1000)
                                        
 
-                                        CheckForSconce(event.target , nextSibling , previousSibling , 'has_balha' ,1 ,nextParentSibling , previousParentSibling)
+                                        CheckForSequence(event.target , nextSibling , previousSibling , 'has_balha' ,1 ,nextParentSibling , previousParentSibling , balha_count)
                                       
                                 
-                                       let checkValue =   CheckForSconce(event.target , nextSibling , previousSibling , 'has_balha', 1 ,nextParentSibling , previousParentSibling )
+                                       let checkValue =   CheckForSequence(event.target , nextSibling , previousSibling , 'has_balha', 1 ,nextParentSibling , previousParentSibling , balha_count )
                   
 
                                        if (checkValue === false){
@@ -764,12 +790,12 @@ let reLive = new Audio('./audio/reLive.mp3')
                                       }, 1000)
                                         
 
-                                        CheckForSconce(event.target , nextSibling , previousSibling , 'has_balha' , 1 ,nextParentSibling , previousParentSibling)
+                                        CheckForSequence(event.target , nextSibling , previousSibling , 'has_balha' , 1 ,nextParentSibling , previousParentSibling , balha_count)
                                       
                                          
 
                                        
-                                       let checkValue =   CheckForSconce(event.target , nextSibling , previousSibling , 'has_balha', 1 ,nextParentSibling , previousParentSibling )
+                                       let checkValue =   CheckForSequence(event.target , nextSibling , previousSibling , 'has_balha', 1 ,nextParentSibling , previousParentSibling  , balha_count )
                                        
                                        if (checkValue === false){
                                       
@@ -793,7 +819,7 @@ let reLive = new Audio('./audio/reLive.mp3')
 
                       
                         let  child = nextElement.children[0]; // get the balha form the adjacent'in vertical matter' td to move it to the clicked td
-                             console.log("the uper box to move balaha on :" , nextElement)
+                         
                         if (nextElement.classList.contains('has_balha') 
                         && nextElement.classList.contains('BBorderColor')){
                               /** audio effect */ props.soundON && movingAudio.play()
@@ -833,11 +859,11 @@ let reLive = new Audio('./audio/reLive.mp3')
                                
                           }, 1000)
 
-                          CheckForSconce(event.target , nextSibling , previousSibling , 'has_balha' , 1 ,nextParentSibling , previousParentSibling)
+                          CheckForSequence(event.target , nextSibling , previousSibling , 'has_balha' , 1 ,nextParentSibling , previousParentSibling , balha_count)
                         
                           
 
-                         let checkValue =   CheckForSconce(event.target , nextSibling , previousSibling , 'has_balha', 1 ,nextParentSibling , previousParentSibling )
+                         let checkValue =   CheckForSequence(event.target , nextSibling , previousSibling , 'has_balha', 1 ,nextParentSibling , previousParentSibling  , balha_count)
                            
                         
 
@@ -871,7 +897,7 @@ let reLive = new Audio('./audio/reLive.mp3')
                                 let prevParentSibling = event.target.parentElement.previousElementSibling//previous parent sibling for clicked td
                                 let nParentSibling = event.target.parentElement.nextElementSibling//next parent sibling for clicked td
 
-                              let wrongMove =  CheckForSconce(event.target , nextSibling , previousSibling , 'has_hajar' ,2 ,nParentSibling , prevParentSibling , hajar_count)
+                              let wrongMove =  CheckForSequence(event.target , nextSibling , previousSibling , 'has_hajar' ,2 ,nParentSibling , prevParentSibling , hajar_count)
                                                     
                                 
                                 if (wrongMove) {
@@ -963,11 +989,11 @@ let reLive = new Audio('./audio/reLive.mp3')
                                                        
                                                   }, 1000)
 
-                                                    CheckForSconce(event.target , nextSibling , previousSibling , 'has_hajar' ,2 ,nParentSibling , prevParentSibling)
+                                                    CheckForSequence(event.target , nextSibling , previousSibling , 'has_hajar' ,2 ,nParentSibling , prevParentSibling , hajar_count)
                                                     
                                                   
                                                   
-                                                    let checkValue =    CheckForSconce(event.target , nextSibling , previousSibling , 'has_hajar' ,2 ,nParentSibling , prevParentSibling)
+                                                    let checkValue =    CheckForSequence(event.target , nextSibling , previousSibling , 'has_hajar' ,2 ,nParentSibling , prevParentSibling , hajar_count)
                                        
                                                   
 
@@ -1025,10 +1051,10 @@ let reLive = new Audio('./audio/reLive.mp3')
                                                        
                                                   }, 1000)
 
-                                                    CheckForSconce(event.target , nextSibling , previousSibling , 'has_hajar' ,2 ,nParentSibling , prevParentSibling)
+                                                    CheckForSequence(event.target , nextSibling , previousSibling , 'has_hajar' ,2 ,nParentSibling , prevParentSibling , hajar_count)
                                                    
 
-                                                    let checkValue =    CheckForSconce(event.target , nextSibling , previousSibling , 'has_hajar' ,2 ,nParentSibling , prevParentSibling)
+                                                    let checkValue =    CheckForSequence(event.target , nextSibling , previousSibling , 'has_hajar' ,2 ,nParentSibling , prevParentSibling , hajar_count)
                                        
                                                    
 
@@ -1059,16 +1085,12 @@ let reLive = new Audio('./audio/reLive.mp3')
                                 if (previousParentSibling){
                                             for (let i= 0 ; i< previousParentSibling.children.length ; i++) {//loop over the children of the previous tr to get the adjacent element for the clicked td
                                                 if (+previousParentSibling.children[i].id === +previousItemId) { // if the child id === clicked id - 6 assign it to previousElement
-                                                
-                                                    console.log("the element id is " , previousParentSibling)
-                                                    console.log("type of previous sibling id",typeof(previousItemId))
-                                                    console.log("the id of the table contain hajar that supuse to move",previousParentSibling.children[i].id)
+                                        
                                                     previousElement =  previousParentSibling.children[i]}
                                             }
-                                            console.log("the place the element should come from : ", previousParentSibling)
-                                            console.log("previous element should be :",previousElement)
+                                          
                                             let  child = previousElement.children[0]; // get the balha form the adjacent'in vertical matter' td to move it to the clicked td
-                                            console.log ("checking the child",child)
+                                          
                                             if (previousElement.classList.contains('has_hajar') 
                                             && previousElement.classList.contains('HBorderColor')){
                                                 
@@ -1111,11 +1133,11 @@ let reLive = new Audio('./audio/reLive.mp3')
                                                    
                                               }, 1000)
                                                 
-                                                CheckForSconce(event.target , nextSibling , previousSibling , 'has_hajar' ,2 ,nParentSibling , prevParentSibling)
+                                                CheckForSequence(event.target , nextSibling , previousSibling , 'has_hajar' ,2 ,nParentSibling , prevParentSibling , hajar_count)
 
                                               
 
-                                                let checkValue =    CheckForSconce(event.target , nextSibling , previousSibling , 'has_hajar' ,2 ,nParentSibling , prevParentSibling)
+                                                let checkValue =    CheckForSequence(event.target , nextSibling , previousSibling , 'has_hajar' ,2 ,nParentSibling , prevParentSibling , hajar_count)
                                        
                                                  
 
@@ -1171,11 +1193,11 @@ let reLive = new Audio('./audio/reLive.mp3')
                                           
                                           setTimeout(() =>{
                                             if (prevBgColor === 'rgb(193, 255, 243)'){
-                                                console.log('error the color of "sibling" is not changed')
+                                               
                                                } else if (parentBgColor === 'rgb(193, 255, 243)'){
-                                                console.log('error the color of "target" is not changed')
+                                              
                                                }        
-                                                  console.log(nextSibling  , event.target)
+                                                 
                                            
                                                   nextElement.style.backgroundColor = prevBgColor 
                                                   event.target.style.backgroundColor = parentBgColor
@@ -1183,11 +1205,11 @@ let reLive = new Audio('./audio/reLive.mp3')
                                         
                                            
                                       }, 1000)
-                                          CheckForSconce(event.target , nextSibling , previousSibling , 'has_hajar' ,2 ,nParentSibling , prevParentSibling)
+                                          CheckForSequence(event.target , nextSibling , previousSibling , 'has_hajar' ,2 ,nParentSibling , prevParentSibling , hajar_count)
 
                                         
 
-                                          let checkValue =    CheckForSconce(event.target , nextSibling , previousSibling , 'has_hajar' ,2 ,nParentSibling , prevParentSibling)
+                                          let checkValue =    CheckForSequence(event.target , nextSibling , previousSibling , 'has_hajar' ,2 ,nParentSibling , prevParentSibling , hajar_count)
                                        
                                         
 
@@ -1502,33 +1524,57 @@ function forward (){
 
 
  /***   AI functions ::::   ***/
+  let  AllTdArray =Object.values(document.querySelectorAll('td')) ;
+    // let  gameStatus = {
+    //     gameTable : AllTdArray,
+    //     balha_count : balha_count,
+    //     hajar_count : hajar_count,
+    //     player1_score : player1_score,
+    //     player2_score : player2_score,
+    //     player1_turn : player1_turn,
+    //     player2_turn : player2_turn,
+    // }
         
-     let   AllTdArray =Object.values(document.querySelectorAll('td')) ;
 
-
+    
      class AI {// ai class 
         
-        AddElement(){
-        
-            AllTdArray.map(td => {
-                if(td.classList.contains('has_hajar')){
-                    if(td.nextElementSibling && td.nextElementSibling.classList.contains('empty')){
-                        setTimeout(() => {
-                            td.nextElementSibling.click();
-                        }, 500);
-                        return td;
-                    }
-
-                }else {
-                    return td;
-                }
+        AddElementRandomly(){ // this ai method add a random element to the game board  
+  
+            if (props.isBot && balha_count !== 0 && player1_turn){// check if the game mode is against ai and there is balha to add and it is ai turn
+                let emptyTdArray = AllTdArray.filter(td => td.classList.contains('empty'))// filter all td that contains empty class
+              
+                /** filtering our emptyTdArray using a forEach method to 
+                * not include the empty td that may cause illegal move (wrong move)
+                * this prevent AI from making a illegal move
+                */
+                emptyTdArray.forEach(ele => {
+                    let IsItWrongMove = CheckForSequence(ele ,ele.nextElementSibling , ele.previousElementSibling , 'has_balha' , 1 ,ele.parentElement.nextElementSibling, ele.parentElement.previousElementSibling , balha_count)
+                        if (IsItWrongMove){
+                           emptyTdArray = emptyTdArray.filter(td => td.id !== ele.id)
+                        }
+                     })
+            
+               
+                let randomNumberTd = Math.floor(Math.random()*emptyTdArray.length)
+                let selectedTd = emptyTdArray[randomNumberTd] // select a random td from our empty array to make move 
+                setTimeout(()=>{
+                   
+                    selectedTd.click()
+               
+                } , 500)
+              
+              
+    
+            }else {
                 return null;
-            })
+            }
+        };
 
-        }
         Kill(){
             console.log('AiKill');
-        }
+        };
+
         move(){
             /** this ai's method  pick the best move available   */
 
@@ -1597,12 +1643,12 @@ function forward (){
             
         }
     };
-   
-  
-    if(player1_turn && props.isBot){// action section
-        let ai = new AI()
-          ai.move()
-        }
+
+  let ai = new AI();
+   React.useEffect(()=>{
+      ai.AddElementRandomly();
+   }, [player1_turn , player2_turn  ] )
+ 
  
 
  let gameState = !playerWon ?  <GameTable 
@@ -1658,7 +1704,7 @@ player2Turn = {player2Turn}
 player1_turn = {player1_turn}
 player2_turn = {player2_turn}
 /> : null;
-console.log('user shuld be ',props.users)
+
 let player2Status = props.phoneMode ?  <PlayerStatus 
 phoneMode = {props.phoneMode}
 isArabic = {props.isArabic}
@@ -1698,8 +1744,7 @@ let phoneModeStyle = {
     display: 'flex' ,
     flexDirection: 'column',
     justifyContent: 'end',
-     
-    
+       
 }
 let diskTopModeStyle = {
     display: 'flex'
@@ -1709,7 +1754,7 @@ let diskTopModeStyle = {
 
 function startingTheGame(e){
     let randomNumber = Math.floor(Math.random()*2)
-    console.log(randomNumber)
+    
     if (e.target.classList.contains('player-1-Option') || e.target.parentElement.classList.contains('player-1-Option')){
         let targetEle = document.getElementsByClassName('player-1-Option')[0]
         targetEle.style.border = ' solid 2px #a67677'

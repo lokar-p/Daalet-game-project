@@ -78,7 +78,7 @@ const arrowStyle = {
     </div>
     let playerName =  <h5 >{props.user.firstName}</h5>
 
- console.log('check user status' , props.user.avatarUrl)
+ 
     let user =  <div className="player">
     {props.isArabic && playerName}
     {props.isArabic && avatar}

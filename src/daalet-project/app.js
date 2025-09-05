@@ -2,7 +2,7 @@ import React from "react";
 import {BrowserRouter , Routes , Route} from 'react-router-dom'
 //import NavBar from "./layoutComponent/navBar";
 //import Footer from "./layoutComponent/footer";
-import Main from "./main";
+import Main from "./main.js";
 import './styles.css'
 //import SingUp from "./logingPage";
 import userData from "./userData";
@@ -20,14 +20,14 @@ export const ArabicLanguageContext = React.createContext()
 export default function App (){
     const [isOfLine , setIsOfLine] = React.useState(false)
     const [isOnLine , setIsOnLine] = React.useState(false)
-    const [isBot , setIsBot  ] = React.useState(false)
+    const [isBot , setIsBot  ] = React.useState(true)
     const [users , setUsers] = React.useState(userData)
     const [isArabic , setIsArabic] = React.useState(true)
     const [isEnglish , setIsEnglish] = React.useState(false)
-    const [soundON , setSoundON] = React.useState(false) 
+    const [soundON , setSoundON] = React.useState(true) 
   
 
-    console.log(isOnLine)
+   
 // React.useEffect(() => {
 
 //    let tdArray = Object.values(document.querySelectorAll('td'));
@@ -36,16 +36,16 @@ export default function App (){
 //          td.classList.contains('has_balha')  })
 //          console.log(currentState)
 // }, [isArabic])
-React.useEffect(()=>{
-   let playMode = localStorage.getItem('playMode');
-   if(playMode === 'online'){
-      setIsOnLine(true)
-   }else  if(playMode === 'ofLine'){
-      setIsOfLine(true)
-   }else  if(playMode === 'AI'){
-      setIsBot(true)
-   }
-},[])
+// React.useEffect(()=>{
+//    let playMode = localStorage.getItem('playMode');
+//    if(playMode === 'online'){
+//       setIsOnLine(true)
+//    }else  if(playMode === 'ofLine'){
+//       setIsOfLine(true)
+//    }else  if(playMode === 'AI'){
+//       setIsBot(true)
+//    }
+// },[])
 
    
     
@@ -70,23 +70,24 @@ React.useEffect(()=>{
  function goOfLine(){
    
     setIsOfLine(true);
-    localStorage.setItem('playMode' , 'ofLine')
+   //  localStorage.setItem('playMode' , 'ofLine')
     
     changeUserData();
  }  
  function goOnLine(){
+   console.log("online mode : ",isOnLine)
     setIsOnLine(true)
-    localStorage.setItem('playMode' , 'onLine')
+    //localStorage.setItem('playMode' , 'onLine')
  } 
  function goBot (){
     changeUserData();
     setIsBot(true)
-    localStorage.setItem('playMode' , 'AI')
+   // localStorage.setItem('playMode' , 'AI')
    
     return true
  }  
    
- console.log(isBot)
+ console.log('are you play agenst AI',isBot)
     
 
 //  function handelFormChange(e){

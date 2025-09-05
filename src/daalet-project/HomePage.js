@@ -45,7 +45,7 @@ export default function HomePage(props) {
       }, 2300);
  }
  
- function goToNames(){
+ function goToOfflineMode(){
    props.setIsBot(false)
    setGoTo(old => !old)
     
@@ -60,7 +60,7 @@ export default function HomePage(props) {
   color: DarkMode ? 'rgb(223, 235, 236)': 'rgb(0,108,133)',
  }
 
- let arrow =  <div className ='backArrowCon' onClick = {goToNames} style = {{margin:'20px auto 0px 30px' ,}}>
+ let arrow =  <div className ='backArrowCon' onClick = {goToOfflineMode} style = {{margin:'20px auto 0px 30px' ,}}>
  
  <div className="BArrowTell" style= {{borderColor: 'rgb(0,108,133)'}}></div>
  <div className="BArrowHead" style= {{borderColor: 'rgb(0,108,133)'}} ></div>
@@ -85,7 +85,7 @@ function handelFormSubmit (e){
 let gotonames = goTo ? 
 form:
 <div className= 'optionContainer'  style={darkModeStyle}>
-                <div  className='gotoGameLink' onClick={goToNames}  style={darkModeStyle}> 
+                <div  className='gotoGameLink' onClick={goToOfflineMode}  style={darkModeStyle}> 
                 <img alt='' src='icon/daaletIcons/computer.svg' />
              {props.isArabic? 'العب مع صديق': 'play with friend'}
                 
