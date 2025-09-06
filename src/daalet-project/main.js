@@ -1644,10 +1644,12 @@ function forward (){
         }
     };
 
-  let ai = new AI();
-   React.useEffect(()=>{
+  
+
+React.useEffect(()=>{
+      let ai = new AI();
       ai.AddElementRandomly();
-   }, [player1_turn , player2_turn  ] )
+   }, )
  
  
 
